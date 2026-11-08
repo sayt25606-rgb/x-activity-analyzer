@@ -1,10 +1,11 @@
 /**
- * Cloudflare Pages Functions: /share
+ * Cloudflare Worker: /share
  * クエリ例: /share?u=elonmusk&h=0-0-1-3-5-2-0-0...
  * X (Twitter) Card / OGP メタタグ付きHTMLを生成して返す
  */
-export async function onRequestGet(context) {
-  const url = new URL(context.request.url);
+
+export async function handleShare(request, env) {
+  const url = new URL(request.url);
   const username = (url.searchParams.get('u') || '').replace(/^@/, '').trim();
   const hourly = url.searchParams.get('h') || '';
 
@@ -48,8 +49,7 @@ export async function onRequestGet(context) {
   </noscript>
 </head>
 <body>
-  <h1>${escapeHtml(title)}</h1>
-  <p>${escapeHtml(description)}</p>
+  <p><a href="/${escapeHtml(url.search)}">トップページへ移動しています...</a></p>
 </body>
 </html>`;
 
@@ -57,7 +57,7 @@ export async function onRequestGet(context) {
     status: 200,
     headers: {
       'Content-Type': 'text/html; charset=utf-8',
-      'Cache-Control': 'public, max-age=3600'
-    }
+      'Cache-Control': 'public, max-age=604800, s-maxage=604800',
+    },
   });
 }
