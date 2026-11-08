@@ -1,6 +1,6 @@
 /**
  * Cloudflare Pages Functions: /share
- * クエリ例: /share?u=sama&h=0-0-1-3-5-2-0-0...
+ * クエリ例: /share?u=elonmusk&h=0-0-1-3-5-2-0-0...
  * X (Twitter) Card / OGP メタタグ付きHTMLを生成して返す
  */
 export async function onRequestGet(context) {
