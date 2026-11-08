@@ -2,18 +2,204 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <title>X Activity Analyzer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>X Activity Analyzer - X (Twitter) ポスト時間帯チェッカー</title>
+  <meta name="description" content="ユーザー名を入力するだけで直近100件の投稿時間帯（0時〜24時）を空模様グラフで可視化・分析し、Xで共有できます。">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <form id="analyzeForm">
-    <input type="text" id="username" placeholder="ユーザー名 (例: sama)" required>
-    <button type="submit" id="analyzeBtn">分析</button>
-  </form>
+  <!-- ================= 統一ヘッダー (全画面共通) ================= -->
+  <header class="app-header">
+    <div class="header-inner">
+      <a href="/" class="header-logo">
+        <span class="logo-text">X Activity Analyzer</span>
+      </a>
 
-  <div id="graphContainer"></div>
+      <!-- 右端の統一ミニ分析バー -->
+      <form id="headerForm" class="header-search-form">
+        <div class="header-input-wrapper">
+          <span class="input-at">@</span>
+          <input type="text" id="headerUsername" placeholder="ユーザー名" autocomplete="off" required>
+        </div>
+        <button type="submit" class="header-submit-btn">分析</button>
+      </form>
+    </div>
+  </header>
 
-  <pre id="result"></pre>
+  <!-- エラーメッセージ通知ボックス -->
+  <div id="errorBox" class="global-error-box" hidden></div>
+
+  <!-- ================= 【状態A】トップ画面 (初期アクセス時) ================= -->
+  <main id="stateA" class="view-state">
+    <section class="hero-section">
+      <h1 class="hero-title">Xの投稿時間帯を分析して共有しましょう！</h1>
+      <p class="hero-subtitle">直近100件のポストから、あなたの最もアクティブな時間帯を美しい空模様グラフで可視化します。</p>
+
+      <!-- メイン入力フォーム -->
+      <form id="mainForm" class="main-search-form">
+        <div class="main-input-wrapper">
+          <span class="main-input-at">@</span>
+          <input type="text" id="mainUsername" placeholder="ユーザー名を入力 (例: sama)" autocomplete="off" required>
+        </div>
+        <button type="submit" id="mainSubmitBtn" class="main-submit-btn">
+          <span>分析する</span>
+          <span class="spinner" aria-hidden="true"></span>
+        </button>
+      </form>
+    </section>
+
+    <!-- 広告枠 ① (横長レスポンシブバナー) -->
+    <div class="ad-container">
+      <div class="ad-slot ad-banner">
+        <span class="ad-label">スポンサーリンク</span>
+        <div class="ad-placeholder">広告枠 ① (728 × 90 等)</div>
+      </div>
+    </div>
+
+    <!-- 薄い灰色の文字で詳細説明 -->
+    <section class="description-section">
+      <p class="desc-text">
+        X Activity Analyzer は、公開アカウントの直近100件のポストから投稿時間帯を集計し、24時間の空模様グラフで表示するツールです。<br>
+        アカウント連携やログインは不要で、ユーザー名を入力するだけですぐに使えます。<br>
+        <span class="desc-notice">※ 非公開（鍵アカウント）のポストは分析できません。</span>
+      </p>
+    </section>
+  </main>
+
+
+  <!-- ================= 【状態B】結果画面 (分析後 / 共有時) ================= -->
+  <main id="stateB" class="view-state" hidden>
+    <!-- メイン分析結果カード -->
+    <section class="result-card">
+      <div class="result-card-header">
+        <div>
+          <h1 id="resultUsername" class="result-user-title">@username のツイート時間帯</h1>
+          <p class="result-user-meta">直近 <span id="resultTotalCount">100</span> 件のポスト時間帯分析</p>
+        </div>
+      </div>
+
+      <!-- グラフ上の簡潔なサマリー -->
+      <div class="result-summary-bar">
+        <div class="summary-chip">
+          <span class="chip-label">最多投稿時間帯:</span>
+          <strong id="summaryPeak" class="chip-value">--:00 (--件)</strong>
+        </div>
+        <div class="summary-chip">
+          <span class="chip-label">最も活発な時間帯:</span>
+          <strong id="summaryTopBand" class="chip-value">-- (--%)</strong>
+        </div>
+      </div>
+
+      <!-- 自前SVGグラフ描画コンテナ -->
+      <div class="graph-card-wrapper">
+        <div id="graphContainer" class="graph-render-area"></div>
+      </div>
+
+      <!-- シェアアクションボタン -->
+      <div class="share-actions">
+        <a id="shareTwitterBtn" href="#" target="_blank" rel="noopener noreferrer" class="share-btn x-btn">
+          <span>X でポスト</span>
+        </a>
+        <button type="button" id="copyUrlBtn" class="share-btn copy-btn">
+          <span>共有リンクをコピー</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- 広告枠 ② (結果直下の高クリック枠) -->
+    <div class="ad-container">
+      <div class="ad-slot ad-rectangle">
+        <span class="ad-label">スポンサーリンク</span>
+        <div class="ad-placeholder">広告枠 ② (300 × 250 / 728 × 90 等)</div>
+      </div>
+    </div>
+
+    <!-- 分析の詳細データ (最多投稿時間帯・時間帯別サマリー) -->
+    <section class="detail-section">
+      <h2 class="section-title">分析の詳細データ</h2>
+      <div class="detail-grid">
+        <!-- ピーク時間帯カード -->
+        <div class="detail-card peak-summary-card">
+          <div class="detail-card-label">最多投稿時間帯 (ピーク)</div>
+          <div class="peak-time-display">
+            <span id="detailPeakHour" class="peak-hour-value">--:00</span>
+            <span class="peak-count-badge"><span id="detailPeakCount">0</span> 件の投稿</span>
+          </div>
+          <p id="detailPeakDesc" class="peak-note">この時間帯に最も集中してポストしています。</p>
+        </div>
+
+        <!-- 4つの時間帯分布カード -->
+        <div class="detail-card time-distribution-card">
+          <div class="detail-card-label">時間帯別ポスト割合</div>
+          <div class="time-bands-list">
+            <div class="time-band-row">
+              <span class="band-name">深夜 (00:00 - 04:59)</span>
+              <div class="band-bar-track"><div id="barLateNight" class="band-bar-fill"></div></div>
+              <span id="textLateNight" class="band-val">0件 (0%)</span>
+            </div>
+            <div class="time-band-row">
+              <span class="band-name">朝方 (05:00 - 10:59)</span>
+              <div class="band-bar-track"><div id="barMorning" class="band-bar-fill"></div></div>
+              <span id="textMorning" class="band-val">0件 (0%)</span>
+            </div>
+            <div class="time-band-row">
+              <span class="band-name">昼間 (11:00 - 16:59)</span>
+              <div class="band-bar-track"><div id="barAfternoon" class="band-bar-fill"></div></div>
+              <span id="textAfternoon" class="band-val">0件 (0%)</span>
+            </div>
+            <div class="time-band-row">
+              <span class="band-name">夜間 (17:00 - 23:59)</span>
+              <div class="band-bar-track"><div id="barEvening" class="band-bar-fill"></div></div>
+              <span id="textEvening" class="band-val">0件 (0%)</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 広告枠 ③ (全時間帯カードの直上) -->
+        <div class="ad-container grid-full-width">
+          <div class="ad-slot ad-rectangle">
+            <span class="ad-label">スポンサーリンク</span>
+            <div class="ad-placeholder">広告枠 ③ (300 × 250 / 728 × 90 等)</div>
+          </div>
+        </div>
+
+        <!-- 全時間ごとの投稿数カード (0〜23時の横棒グラフ) -->
+        <div class="detail-card full-hours-card">
+          <div class="detail-card-label">全時間ごとの投稿数 (0時〜23時)</div>
+          <div id="hourlyBarsList" class="hourly-bars-list"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 広告枠 ④ (詳細データと他アカウント分析の間) -->
+    <div class="ad-container">
+      <div class="ad-slot ad-rectangle">
+        <span class="ad-label">スポンサーリンク</span>
+        <div class="ad-placeholder">広告枠 ④ (300 × 250 / 728 × 90 等)</div>
+      </div>
+    </div>
+
+    <!-- 他のアカウントの分析セクション -->
+    <section class="re-analyze-section">
+      <h2 class="section-title">他のアカウントを分析する</h2>
+      <form id="bottomForm" class="bottom-search-form">
+        <div class="bottom-input-wrapper">
+          <span class="input-at">@</span>
+          <input type="text" id="bottomUsername" placeholder="別のユーザー名を入力" autocomplete="off" required>
+        </div>
+        <button type="submit" class="bottom-submit-btn">分析する</button>
+      </form>
+    </section>
+  </main>
+
+
+  <!-- ================= フッター ================= -->
+  <footer class="app-footer">
+    <p class="copyright">&copy; 2026 X Activity Analyzer - All rights reserved.</p>
+  </footer>
+
+  <!-- コピートースト通知 -->
+  <div id="toast" class="toast" aria-live="polite"></div>
 
   <script src="script.js"></script>
 </body>

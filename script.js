@@ -1,8 +1,44 @@
-const form = document.getElementById('analyzeForm');
-const usernameInput = document.getElementById('username');
-const analyzeBtn = document.getElementById('analyzeBtn');
-const resultPre = document.getElementById('result');
+/**
+ * X Activity Analyzer - Frontend Script
+ */
+
+// DOM 要素
+const stateA = document.getElementById('stateA');
+const stateB = document.getElementById('stateB');
+const errorBox = document.getElementById('errorBox');
+const toast = document.getElementById('toast');
+
+// フォーム類
+const headerForm = document.getElementById('headerForm');
+const headerUsername = document.getElementById('headerUsername');
+const mainForm = document.getElementById('mainForm');
+const mainUsername = document.getElementById('mainUsername');
+const mainSubmitBtn = document.getElementById('mainSubmitBtn');
+const bottomForm = document.getElementById('bottomForm');
+const bottomUsername = document.getElementById('bottomUsername');
+
+// 結果カード要素
+const resultUsername = document.getElementById('resultUsername');
+const resultTotalCount = document.getElementById('resultTotalCount');
+const summaryPeak = document.getElementById('summaryPeak');
+const summaryTopBand = document.getElementById('summaryTopBand');
 const graphContainer = document.getElementById('graphContainer');
+const shareTwitterBtn = document.getElementById('shareTwitterBtn');
+const copyUrlBtn = document.getElementById('copyUrlBtn');
+
+// 分析詳細要素
+const detailPeakHour = document.getElementById('detailPeakHour');
+const detailPeakCount = document.getElementById('detailPeakCount');
+const detailPeakDesc = document.getElementById('detailPeakDesc');
+const hourlyBarsList = document.getElementById('hourlyBarsList');
+const barLateNight = document.getElementById('barLateNight');
+const textLateNight = document.getElementById('textLateNight');
+const barMorning = document.getElementById('barMorning');
+const textMorning = document.getElementById('textMorning');
+const barAfternoon = document.getElementById('barAfternoon');
+const textAfternoon = document.getElementById('textAfternoon');
+const barEvening = document.getElementById('barEvening');
+const textEvening = document.getElementById('textEvening');
 
 // 24時間の空背景カラーコード (00時〜23時)
 const SKY_COLORS = [
@@ -11,6 +47,8 @@ const SKY_COLORS = [
   "#74b5f2", "#6badec", "#5ea1db", "#5292c9", "#768ca8", "#d9845b",
   "#9c5d75", "#58486e", "#353e57", "#252d3d", "#1e2532", "#191f2a"
 ];
+
+let currentShareUrl = '';
 
 // --- 1. データ取得 ---
 /**
@@ -23,10 +61,10 @@ async function fetchUserPosts(username) {
   const res = await fetch(url);
 
   if (res.status === 404) {
-    throw new Error(`@${username} は存在しないか、鍵アカウントです。`);
+    throw new Error(`@${username} は存在しないか、鍵アカウント（非公開）です。`);
   }
   if (!res.ok) {
-    throw new Error(`取得エラー (HTTP ${res.status})`);
+    throw new Error(`タイムラインの取得に失敗しました (HTTP ${res.status})`);
   }
 
   const xmlText = await res.text();
@@ -54,7 +92,7 @@ async function fetchUserPosts(username) {
 
 // --- 2. 集計・分析 ---
 /**
- * 投稿日時のリストから、日本時間 (JST: 0〜23時) ごとの投稿数を集計する
+ * 投稿日時のリストから日本時間 (JST: 0〜23時) の件数を集計する
  * @param {Date[]} postDates 投稿日時の配列
  * @returns {number[]} 0〜23時の件数配列 (長さ24)
  */
@@ -69,7 +107,7 @@ function aggregateHourlyJST(postDates) {
 
 // --- 3. 自前SVGグラフの動的生成 ---
 /**
- * 24分割の空背景と棒グラフを組み合わせた完全なSVG文字列を生成する
+ * 24分割の空背景とパステルグリーン棒グラフを組み合わせたSVG文字列を生成
  * @param {number[]} hourly 0〜23時の件数配列
  * @returns {string} SVGマークアップ文字列
  */
@@ -78,8 +116,8 @@ function generateGraphSvg(hourly) {
   const peakHour = hourly.indexOf(Math.max(...hourly));
 
   // 棒グラフパラメータ (1時間あたり 50px 幅, 全幅 1200px)
-  const baseY = 540; // 下部の時間ラベルをギリギリまで大きく見せるためにベースラインを微調整
-  const maxBarH = 370; // 太陽や月の位置 (y ≈ 160) まで届くダイナミックな高さ
+  const baseY = 530;
+  const maxBarH = 370; // 太陽や月の位置まで届く高さ
   const barW = 32;
   const barOffset = (50 - barW) / 2; // = 9px
 
@@ -89,7 +127,7 @@ function generateGraphSvg(hourly) {
     bandsSvg += `<rect x="${h * 50}" y="0" width="50" height="630" fill="${color}" />`;
   });
 
-  // 24本の棒グラフバー
+  // 24本の棒グラフバー (パステルグリーン)
   let barsSvg = '';
   hourly.forEach((count, h) => {
     if (count === 0) return;
@@ -108,7 +146,7 @@ function generateGraphSvg(hourly) {
     `;
   });
 
-  // 横軸ラベル (2行で大きく表示: 数字 + am/pm)
+  // 横軸ラベル (数字 + am/pm をギリギリまで大きく)
   const hourLabels = [
     { h: 0,  num: '0',  period: 'am' },
     { h: 3,  num: '3',  period: 'am' },
@@ -125,16 +163,14 @@ function generateGraphSvg(hourly) {
     const x = h * 50 + 25;
     labelsSvg += `
       <g text-anchor="middle">
-        <!-- 数字 (下部エリアの限界まで大きく) -->
-        <text x="${x}" y="590" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="48" font-weight="700" fill="#ffffff" letter-spacing="-1">${num}</text>
-        <!-- am / pm -->
-        <text x="${x}" y="612" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="18" font-weight="600" fill="rgba(255,255,255,0.75)" letter-spacing="1">${period}</text>
+        <text x="${x}" y="578" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="38" font-weight="900" fill="#ffffff" letter-spacing="-1">${num}</text>
+        <text x="${x}" y="612" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="18" font-weight="800" fill="rgba(255,255,255,0.75)" letter-spacing="1">${period}</text>
       </g>
     `;
   });
 
   return `
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="100%" style="max-width: 800px; display: block; height: auto;">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="100%" style="display: block; height: auto;">
   <defs>
     <clipPath id="canvasClip">
       <rect width="1200" height="630" />
@@ -155,13 +191,12 @@ function generateGraphSvg(hourly) {
       <stop offset="60%" stop-color="#dfe5ef" />
       <stop offset="100%" stop-color="#c2cbd9" />
     </linearGradient>
-    <!-- 通常バーのグラデーション（爽やかなパステルグリーン） -->
+    <!-- 通常バー: 優しいミントパステルグリーン -->
     <linearGradient id="barGrad" x1="0%" y1="0%" x2="0%" y2="100%">
       <stop offset="0%" stop-color="#93f0b5" />
       <stop offset="100%" stop-color="#56cca4" />
     </linearGradient>
-
-    <!-- ピークバーのグラデーション（明るく輝くライムパステルグリーン） -->
+    <!-- ピークバー: 明るいライムパステルグリーン -->
     <linearGradient id="peakGrad" x1="0%" y1="0%" x2="0%" y2="100%">
       <stop offset="0%" stop-color="#fef08a" />
       <stop offset="60%" stop-color="#86efac" />
@@ -231,7 +266,7 @@ function generateGraphSvg(hourly) {
       ${barsSvg}
     </g>
 
-    <!-- 横軸ラベル -->
+    <!-- 横軸ラベル (大きく2行) -->
     <g id="labels">
       ${labelsSvg}
     </g>
@@ -240,13 +275,7 @@ function generateGraphSvg(hourly) {
   `.trim();
 }
 
-// --- 4. UI表示・URL生成 ---
-/**
- * 共有URLを生成する（hパラメータはハイフン区切り）
- * @param {string} username ユーザー名
- * @param {number[]} hourly 0〜23時の件数配列
- * @returns {string} 共有URL
- */
+// --- 4. 共有URL生成 ---
 function generateShareUrl(username, hourly) {
   const hParam = hourly.join('-');
   const shareUrl = new URL('/share', window.location.origin);
@@ -255,29 +284,153 @@ function generateShareUrl(username, hourly) {
   return shareUrl.toString();
 }
 
-/**
- * 分析結果を画面に表示する
- * @param {object} result 分析結果オブジェクト
- */
-function renderResult(result) {
-  resultPre.textContent = JSON.stringify(result, null, 2);
-  if (result.hourly && graphContainer) {
-    graphContainer.innerHTML = generateGraphSvg(result.hourly);
+// --- 5. 結果描画 & 状態Bへの遷移 ---
+function renderResult({ username, total, hourly, shareUrl }) {
+  hideError();
+
+  currentShareUrl = shareUrl || generateShareUrl(username, hourly);
+
+  // 1. 基本情報セット
+  resultUsername.textContent = `@${username} のツイート時間帯`;
+  resultTotalCount.textContent = total;
+
+  // 2. SVGグラフ生成・挿入
+  graphContainer.innerHTML = generateGraphSvg(hourly);
+
+  // 3. ピーク時間計算
+  const maxCount = Math.max(...hourly);
+  const peakHour = hourly.indexOf(maxCount);
+  detailPeakHour.textContent = `${peakHour.toString().padStart(2, '0')}:00`;
+  detailPeakCount.textContent = maxCount;
+
+  // 4. 4つの時間帯集計 (件数 & 割合)
+  const lateNight = hourly.slice(0, 5).reduce((a, b) => a + b, 0);  // 00:00 - 04:59
+  const morning   = hourly.slice(5, 11).reduce((a, b) => a + b, 0); // 05:00 - 10:59
+  const afternoon = hourly.slice(11, 17).reduce((a, b) => a + b, 0); // 11:00 - 16:59
+  const evening   = hourly.slice(17, 24).reduce((a, b) => a + b, 0); // 17:00 - 23:59
+
+  const pLate = total > 0 ? Math.round((lateNight / total) * 100) : 0;
+  const pMorn = total > 0 ? Math.round((morning / total) * 100) : 0;
+  const pAftn = total > 0 ? Math.round((afternoon / total) * 100) : 0;
+  const pEven = total > 0 ? Math.round((evening / total) * 100) : 0;
+
+  textLateNight.textContent = `${lateNight}件 (${pLate}%)`;
+  barLateNight.style.width = `${pLate}%`;
+
+  textMorning.textContent = `${morning}件 (${pMorn}%)`;
+  barMorning.style.width = `${pMorn}%`;
+
+  textAfternoon.textContent = `${afternoon}件 (${pAftn}%)`;
+  barAfternoon.style.width = `${pAftn}%`;
+
+  textEvening.textContent = `${evening}件 (${pEven}%)`;
+  barEvening.style.width = `${pEven}%`;
+
+  // 最も多い時間帯を説明文に反映
+  const bands = [
+    { name: '深夜帯 (0〜4時)', val: lateNight },
+    { name: '朝方 (5〜10時)', val: morning },
+    { name: '昼間 (11〜16時)', val: afternoon },
+    { name: '夜間 (17〜23時)', val: evening }
+  ];
+  bands.sort((a, b) => b.val - a.val);
+  const topBandPercent = total > 0 ? Math.round((bands[0].val / total) * 100) : 0;
+  detailPeakDesc.textContent = `${peakHour}時台が最多で、一日の中では「${bands[0].name}」の活動割合が最も高くなっています。`;
+
+  // グラフ上の簡潔なサマリー反映
+  if (summaryPeak) {
+    summaryPeak.textContent = `${peakHour.toString().padStart(2, '0')}:00 (${maxCount}件)`;
+  }
+  if (summaryTopBand) {
+    summaryTopBand.textContent = `${bands[0].name} (${topBandPercent}%)`;
+  }
+
+  // 5. 全時間ごとの投稿数 (縦軸0〜23時、横方向のX青色棒グラフ)
+  if (hourlyBarsList) {
+    const maxHourCount = Math.max(...hourly, 1);
+    let barsHtml = '';
+    hourly.forEach((count, h) => {
+      const timeStr = `${h.toString().padStart(2, '0')}:00`;
+      const pct = Math.round((count / maxHourCount) * 100);
+      barsHtml += `
+        <div class="hourly-bar-row">
+          <span class="hourly-bar-time">${timeStr}</span>
+          <div class="hourly-bar-track">
+            <div class="hourly-bar-fill" style="width: ${pct}%;"></div>
+          </div>
+          <span class="hourly-bar-count">${count}件</span>
+        </div>
+      `;
+    });
+    hourlyBarsList.innerHTML = barsHtml;
+  }
+
+  // 6. X 共有ボタン設定
+  const shareText = `@${username} の活動時間帯を分析しました。\n\nピーク時間: ${peakHour}時台 (${maxCount}件)\n最も活発な時間帯: ${bands[0].name} (${topBandPercent}%)\n\n#XActivityAnalyzer`;
+  const twitterIntentUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(currentShareUrl)}`;
+  shareTwitterBtn.href = twitterIntentUrl;
+
+  // 6. 画面状態の切り替え (状態Aを非表示、状態Bを表示)
+  stateA.hidden = true;
+  stateB.hidden = false;
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// --- 6. 共通分析トリガー ---
+async function handleAnalyze(rawUser) {
+  const username = rawUser.trim().replace(/^@/, '');
+  if (!username) return;
+
+  hideError();
+  setLoading(true);
+
+  try {
+    const postDates = await fetchUserPosts(username);
+    const hourly = aggregateHourlyJST(postDates);
+    const shareUrl = generateShareUrl(username, hourly);
+
+    renderResult({
+      username: username,
+      total: postDates.length,
+      hourly: hourly,
+      shareUrl: shareUrl
+    });
+  } catch (err) {
+    showError(err.message);
+  } finally {
+    setLoading(false);
   }
 }
 
-/**
- * エラーメッセージを画面に表示する
- * @param {string} message エラー内容
- */
-function renderError(message) {
-  resultPre.textContent = `エラー: ${message}`;
+function setLoading(isLoading) {
+  [mainSubmitBtn, headerForm.querySelector('button'), bottomForm.querySelector('button')].forEach(btn => {
+    if (btn) {
+      btn.disabled = isLoading;
+      btn.classList.toggle('loading', isLoading);
+    }
+  });
 }
 
-// --- 4. URLパラメータからの復元 ---
-/**
- * URLクエリパラメータ (?u=...&h=...) があれば分析結果を復元して表示する
- */
+function showError(message) {
+  errorBox.textContent = message;
+  errorBox.hidden = false;
+  errorBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+function hideError() {
+  errorBox.textContent = '';
+  errorBox.hidden = true;
+}
+
+function showToast(message) {
+  toast.textContent = message;
+  toast.classList.add('show');
+  setTimeout(() => {
+    toast.classList.remove('show');
+  }, 2400);
+}
+
+// --- 7. URLクエリからの復元 ---
 function restoreFromUrlParams() {
   const params = new URLSearchParams(window.location.search);
   const u = params.get('u');
@@ -286,10 +439,8 @@ function restoreFromUrlParams() {
   if (!u || !h) return;
 
   const hourly = h.split('-').map(Number);
-  // 24時間分の有効な数値か検証
   if (hourly.length !== 24 || hourly.some(isNaN)) return;
 
-  usernameInput.value = u;
   const total = hourly.reduce((a, b) => a + b, 0);
   const shareUrl = generateShareUrl(u, hourly);
 
@@ -301,38 +452,41 @@ function restoreFromUrlParams() {
   });
 }
 
-// ページ読み込み時に復元を試行
-window.addEventListener('DOMContentLoaded', restoreFromUrlParams);
-
-// --- 5. イベント処理 ---
-form.addEventListener('submit', async (e) => {
+// --- 8. イベントリスナー設定 ---
+// 1. ヘッダーミニフォーム
+headerForm.addEventListener('submit', (e) => {
   e.preventDefault();
-  const username = usernameInput.value.trim().replace(/^@/, '');
-  if (!username) return;
+  handleAnalyze(headerUsername.value);
+});
 
-  analyzeBtn.disabled = true;
-  resultPre.textContent = '取得中...';
+// 2. メインフォーム (状態A)
+mainForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+  handleAnalyze(mainUsername.value);
+});
 
+// 3. 下部再検索フォーム (状態B)
+bottomForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+  handleAnalyze(bottomUsername.value);
+});
+
+// 共有URLコピー
+copyUrlBtn.addEventListener('click', async () => {
+  if (!currentShareUrl) return;
   try {
-    // 1. 投稿データ取得
-    const postDates = await fetchUserPosts(username);
-
-    // 2. 24時間集計
-    const hourly = aggregateHourlyJST(postDates);
-
-    // 3. 共有URL生成
-    const shareUrl = generateShareUrl(username, hourly);
-
-    // 4. 結果表示
-    renderResult({
-      username: username,
-      total: postDates.length,
-      hourly: hourly,
-      shareUrl: shareUrl
-    });
+    await navigator.clipboard.writeText(currentShareUrl);
+    showToast('共有リンクをクリップボードにコピーしました！');
   } catch (err) {
-    renderError(err.message);
-  } finally {
-    analyzeBtn.disabled = false;
+    const input = document.createElement('input');
+    input.value = currentShareUrl;
+    document.body.appendChild(input);
+    input.select();
+    document.execCommand('copy');
+    document.body.removeChild(input);
+    showToast('共有リンクをクリップボードにコピーしました！');
   }
 });
+
+// ページ読み込み時
+window.addEventListener('DOMContentLoaded', restoreFromUrlParams);
