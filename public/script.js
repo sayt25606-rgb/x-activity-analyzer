@@ -11,11 +11,13 @@ const toast = document.getElementById('toast');
 // フォーム類
 const headerForm = document.getElementById('headerForm');
 const headerUsername = document.getElementById('headerUsername');
+const headerSubmitBtn = document.getElementById('headerSubmitBtn');
 const mainForm = document.getElementById('mainForm');
 const mainUsername = document.getElementById('mainUsername');
 const mainSubmitBtn = document.getElementById('mainSubmitBtn');
 const bottomForm = document.getElementById('bottomForm');
 const bottomUsername = document.getElementById('bottomUsername');
+const bottomSubmitBtn = document.getElementById('bottomSubmitBtn');
 
 // 結果カード要素
 const resultUsername = document.getElementById('resultUsername');
@@ -403,7 +405,7 @@ async function handleAnalyze(rawUser) {
 }
 
 function setLoading(isLoading) {
-  [mainSubmitBtn, headerForm.querySelector('button'), bottomForm.querySelector('button')].forEach(btn => {
+  [mainSubmitBtn, headerSubmitBtn, bottomSubmitBtn].forEach(btn => {
     if (btn) {
       btn.disabled = isLoading;
       btn.classList.toggle('loading', isLoading);

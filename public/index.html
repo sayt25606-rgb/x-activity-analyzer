@@ -21,7 +21,10 @@
           <span class="input-at">@</span>
           <input type="text" id="headerUsername" placeholder="ユーザー名" autocomplete="off" required>
         </div>
-        <button type="submit" class="header-submit-btn">分析</button>
+        <button type="submit" id="headerSubmitBtn" class="header-submit-btn">
+          <span>分析</span>
+          <span class="spinner" aria-hidden="true"></span>
+        </button>
       </form>
     </div>
   </header>
@@ -188,7 +191,10 @@
           <span class="input-at">@</span>
           <input type="text" id="bottomUsername" placeholder="別のユーザー名を入力 (例: elonmusk)" autocomplete="off" required>
         </div>
-        <button type="submit" class="bottom-submit-btn">分析する</button>
+        <button type="submit" id="bottomSubmitBtn" class="bottom-submit-btn">
+          <span>分析する</span>
+          <span class="spinner" aria-hidden="true"></span>
+        </button>
       </form>
     </section>
   </main>
