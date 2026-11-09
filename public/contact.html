@@ -38,8 +38,17 @@
         <a href="/" class="btn-return-home">トップページへ戻る</a>
       </div>
 
+      <!-- 送信エラーメッセージ (初期非表示) -->
+      <div id="contactError" class="contact-alert-error" hidden></div>
+
       <!-- お問い合わせ入力フォーム -->
       <form id="contactForm" class="contact-form">
+        <!-- Web3Forms Access Key (初期値設定用) -->
+        <input type="hidden" name="access_key" id="accessKeyInput" value="YOUR_ACCESS_KEY_HERE">
+        <input type="hidden" name="subject" value="【X Activity Analyzer】お問い合わせが届きました">
+        <input type="hidden" name="from_name" value="X Activity Analyzer">
+        <!-- スパム対策用ハニーポット -->
+        <input type="checkbox" name="botcheck" style="display: none;">
         <div class="form-group">
           <label for="contactName">お名前（ニックネーム可） <span class="badge-required">必須</span></label>
           <input type="text" id="contactName" name="name" placeholder="例: ユーザー" autocomplete="name" required>
@@ -98,27 +107,54 @@
   <script>
     const form = document.getElementById('contactForm');
     const successBox = document.getElementById('contactSuccess');
+    const errorBox = document.getElementById('contactError');
     const submitBtn = document.getElementById('contactSubmitBtn');
+    const accessKeyInput = document.getElementById('accessKeyInput');
 
-    form.addEventListener('submit', (e) => {
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
       
       const name = document.getElementById('contactName').value.trim();
       const email = document.getElementById('contactEmail').value.trim();
-      const category = document.getElementById('contactCategory').value;
       const message = document.getElementById('contactMessage').value.trim();
 
       if (!name || !email || !message) return;
 
       submitBtn.disabled = true;
       submitBtn.textContent = '送信中...';
+      errorBox.hidden = true;
 
-      // フォームの送信処理 (メールクライアント起動または完了画面の表示)
-      setTimeout(() => {
-        form.hidden = true;
-        successBox.hidden = false;
-        successBox.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }, 500);
+      // Access Key が設定されている場合は Web3Forms API へ送信
+      if (accessKeyInput && accessKeyInput.value && accessKeyInput.value !== 'YOUR_ACCESS_KEY_HERE') {
+        try {
+          const formData = new FormData(form);
+          const res = await fetch('https://api.web3forms.com/submit', {
+            method: 'POST',
+            body: formData
+          });
+          const result = await res.json();
+
+          if (result.success) {
+            form.hidden = true;
+            successBox.hidden = false;
+            successBox.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          } else {
+            throw new Error(result.message || '送信に失敗しました。');
+          }
+        } catch (err) {
+          submitBtn.disabled = false;
+          submitBtn.textContent = '送信する';
+          errorBox.textContent = `送信エラー: ${err.message || '時間をおいて再度お試しください。'}`;
+          errorBox.hidden = false;
+        }
+      } else {
+        // Access Key 未設定時のフォールバック (シミュレーション表示)
+        setTimeout(() => {
+          form.hidden = true;
+          successBox.hidden = false;
+          successBox.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 500);
+      }
     });
   </script>
 </body>
