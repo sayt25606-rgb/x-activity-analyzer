@@ -1360,11 +1360,10 @@ body {
   border-radius: var(--radius-sm);
 }
 
-.pattern-summary-tag {
-  font-size: 11px;
+.pattern-summary-label {
+  font-size: 14px;
   font-weight: 800;
-  padding: 3px 8px;
-  border-radius: 4px;
+  color: var(--text-main);
   white-space: nowrap;
   flex-shrink: 0;
 }

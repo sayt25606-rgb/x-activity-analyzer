@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>このサイトについて - X Activity Analyzer</title>
+  <meta name="description" content="X Activity Analyzer（このサイトについて）のサービス概要、開発の目的、特徴、セキュリティとプライバシーへの取り組み、運営情報をご紹介します。">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="alternate icon" type="image/png" href="favicon-32x32.png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="stylesheet" href="style.css">
+  <!-- Google AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8713294456466209"
+       crossorigin="anonymous"></script>
+</head>
+<body>
+  <!-- ================= 統一ヘッダー ================= -->
+  <header class="app-header">
+    <div class="header-inner">
+      <a href="/" class="header-logo">
+        <img src="logo-icon.svg" alt="X Activity Analyzer" class="logo-image" width="21" height="22">
+        <span class="logo-text">X Activity Analyzer</span>
+      </a>
+
+      <div class="header-right">
+        <!-- ハンバーガーメニューボタン -->
+        <div class="header-menu-container">
+          <button type="button" id="menuToggleBtn" class="menu-toggle-btn" aria-label="メニューを開く" aria-expanded="false">
+            <svg class="hamburger-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
+              <line x1="4" y1="6" x2="20" y2="6"></line>
+              <line x1="4" y1="12" x2="20" y2="12"></line>
+              <line x1="4" y1="18" x2="20" y2="18"></line>
+            </svg>
+          </button>
+
+          <!-- ドロップダウンメニュー -->
+          <div id="headerDropdown" class="header-dropdown" hidden>
+            <nav class="dropdown-nav">
+              <a href="/" class="dropdown-item">ホーム</a>
+              <a href="/site.html" class="dropdown-item active">このサイトについて</a>
+              <a href="/about.html" class="dropdown-item">使い方・機能紹介</a>
+              <a href="/examples.html" class="dropdown-item">分析例・活用シーン</a>
+              <a href="/faq.html" class="dropdown-item">よくある質問 (FAQ)</a>
+              <div class="dropdown-divider"></div>
+              <a href="/privacy.html" class="dropdown-item sub-item">プライバシーポリシー</a>
+              <a href="/terms.html" class="dropdown-item sub-item">利用規約</a>
+              <a href="/contact.html" class="dropdown-item sub-item">お問い合わせ</a>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= メインコンテンツ ================= -->
+  <main class="content-page">
+    <article class="content-card">
+      <h1 class="content-title">このサイトについて</h1>
+      <p class="content-desc">
+        X Activity Analyzer（エックス アクティビティ アナライザー）は、X（旧Twitter）公開アカウントの投稿時間帯を集計し、24時間の空模様グラフで直感的に可視化・共有できる無料のWebサービスです。
+      </p>
+
+      <section class="content-section">
+        <h2>サービス開発の背景と目的</h2>
+        <p>
+          日々のSNS活動において、「自分がどの時間帯に最も活発にポストしているか」や「交流したいアカウントがいつ浮上しているか」を正確に把握することは簡単ではありません。
+        </p>
+        <p>
+          本ツールは、アカウントのパスワード入力や複雑なアプリ連携を行うことなく、ユーザー名を入力するだけで誰でも瞬時に直近の活動リズムをグラフ化し、Xでの共有やアカウント運用に役立てていただくことを目的に個人開発されました。
+        </p>
+      </section>
+
+      <section class="content-section">
+        <h2>本ツールの主な特徴</h2>
+        <div class="feature-highlights-grid">
+          <div class="highlight-item">
+            <div class="highlight-title">完全無料・ログイン不要</div>
+            <div class="highlight-desc">パスワード入力やOAuth連携は一切不要。公開されているIDを入力するだけですぐに利用できます。</div>
+          </div>
+          <div class="highlight-item">
+            <div class="highlight-title">24分割の空模様グラフ</div>
+            <div class="highlight-desc">0時から23時までの時間の移り変わり（月夜、夜明け、青空、夕暮れ、星空）を美しいグラデーションで表現します。</div>
+          </div>
+          <div class="highlight-item">
+            <div class="highlight-title">Xでカード付き共有</div>
+            <div class="highlight-desc">分析結果をワンクリックでXへポスト可能。大判のグラフカードがタイムラインにそのまま表示されます。</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="content-section">
+        <h2>プライバシーとセキュリティへの配慮</h2>
+        <p>当サービスでは、利用者のプライバシーとセキュリティを最優先に設計しています。</p>
+        <ul>
+          <li><strong>アカウント権限の要求なし</strong>: Xアカウントの読み取り権限や投稿権限を要求することは一切ありません。乗っ取りや不正アクセスのリスクなくご利用いただけます。</li>
+          <li><strong>公開情報のみの取得</strong>: インターネット上で誰でも閲覧可能な公開ポストのみを集計対象としています。非公開（鍵アカウント）やDMの内容を取得することはありません。</li>
+          <li><strong>データの永続保存なし</strong>: 取得したポストデータは時間帯集計の処理にのみ一時的に利用され、投稿本文などをサーバーに保存することはありません。</li>
+        </ul>
+      </section>
+
+      <section class="content-section">
+        <h2>サイト運営情報</h2>
+        <div class="time-bands-spec">
+          <div class="band-spec-row">
+            <span class="spec-name">サービス名</span>
+            <span class="spec-desc">X Activity Analyzer（エックス アクティビティ アナライザー）</span>
+          </div>
+          <div class="band-spec-row">
+            <span class="spec-name">サイトURL</span>
+            <span class="spec-desc">https://xactivityanalyzer.com</span>
+          </div>
+          <div class="band-spec-row">
+            <span class="spec-name">運営形態</span>
+            <span class="spec-desc">個人開発（Webサービス運営）</span>
+          </div>
+          <div class="band-spec-row">
+            <span class="spec-name">お問い合わせ</span>
+            <span class="spec-desc"><a href="/contact.html" style="color: var(--primary-blue); font-weight: 700; text-decoration: none;">お問い合わせフォーム</a>よりご連絡ください</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="content-section">
+        <h2>免責事項</h2>
+        <p>
+          本サービスは個人開発による非公式ツールであり、X Corp. およびその関連組織とは一切関係ありません。Xの仕様変更や外部サービスの状況等により、事前の予告なくサービスの提供内容が変更または停止される場合があります。詳細は<a href="/terms.html" style="color: var(--primary-blue); font-weight: 700; text-decoration: none;">利用規約</a>をご確認ください。
+        </p>
+      </section>
+
+      <div class="content-cta-wrapper">
+        <a href="/" class="btn-primary-large">トップページで分析する</a>
+      </div>
+    </article>
+  </main>
+
+  <!-- ================= フッター ================= -->
+  <footer class="app-footer">
+    <div class="footer-links">
+      <a href="/site.html">このサイトについて</a>
+      <a href="/about.html">使い方・概要</a>
+      <a href="/examples.html">分析例・活用法</a>
+      <a href="/faq.html">よくある質問</a>
+      <a href="/privacy.html">プライバシーポリシー</a>
+      <a href="/terms.html">利用規約</a>
+      <a href="/contact.html">お問い合わせ</a>
+    </div>
+    <p class="copyright">&copy; 2026 X Activity Analyzer - All rights reserved.</p>
+  </footer>
+
+  <script src="menu.js"></script>
+</body>
+</html>

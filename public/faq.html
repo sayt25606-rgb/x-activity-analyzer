@@ -37,6 +37,7 @@
           <div id="headerDropdown" class="header-dropdown" hidden>
             <nav class="dropdown-nav">
               <a href="/" class="dropdown-item">ホーム</a>
+              <a href="/site.html" class="dropdown-item">このサイトについて</a>
               <a href="/about.html" class="dropdown-item">使い方・機能紹介</a>
               <a href="/examples.html" class="dropdown-item">分析例・活用シーン</a>
               <a href="/faq.html" class="dropdown-item active">よくある質問 (FAQ)</a>
@@ -95,9 +96,9 @@
 
           <!-- Q5 -->
           <div class="faq-item">
-            <h3 class="faq-question">Q. グラフの時間帯は何時を基準にしていますか？</h3>
+            <h3 class="faq-question">Q. グラフの時間帯はどのように集計されますか？</h3>
             <div class="faq-answer">
-              <p><strong>日本標準時（JST, UTC+9）</strong>を基準としています。海外に在住のユーザー様や海外サーバーからのポストであっても、日本時間における0時〜23時の活動時間帯に変換して集計・表示されます。</p>
+              <p>取得されたポストの投稿時刻をもとに、0時から23時までの24時間スロットに振り分けて集計・表示しています。深夜・朝方・昼間・夜間の4つの時間帯区分に自動分類されます。</p>
             </div>
           </div>
 
@@ -149,9 +150,7 @@
         </div>
       </section>
 
-      <div class="content-cta-box">
-        <h3>疑問は解決しましたか？さっそく分析してみましょう！</h3>
-        <p>気になるアカウントの活動時間帯を今すぐチェックできます。</p>
+      <div class="content-cta-wrapper">
         <a href="/" class="btn-primary-large">トップページで分析する</a>
       </div>
     </article>
@@ -160,6 +159,7 @@
   <!-- ================= フッター ================= -->
   <footer class="app-footer">
     <div class="footer-links">
+      <a href="/site.html">このサイトについて</a>
       <a href="/about.html">使い方・概要</a>
       <a href="/examples.html">分析例・活用法</a>
       <a href="/faq.html">よくある質問</a>
