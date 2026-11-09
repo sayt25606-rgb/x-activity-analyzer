@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <!-- 実際のグラフと同じミントパステルグリーングラデーション -->
+    <linearGradient id="barGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#93f0b5" />
+      <stop offset="100%" stop-color="#56cca4" />
+    </linearGradient>
+    <!-- ピークバー (実グラフのピーク色: 黄色〜ライムグリーン) -->
+    <linearGradient id="peakGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#fef08a" />
+      <stop offset="60%" stop-color="#86efac" />
+      <stop offset="100%" stop-color="#4ade80" />
+    </linearGradient>
+  </defs>
+  <!-- Xの水色背景 (#1d9bf0) -->
+  <rect width="512" height="512" rx="115" fill="#1d9bf0" />
+  <!-- 5本の実際の緑の縦バー -->
+  <rect x="107" y="300" width="42" height="120" rx="18" fill="url(#barGrad)" />
+  <rect x="171" y="215" width="42" height="205" rx="18" fill="url(#barGrad)" />
+  <rect x="235" y="110" width="42" height="310" rx="18" fill="url(#peakGrad)" />
+  <rect x="299" y="195" width="42" height="225" rx="18" fill="url(#barGrad)" />
+  <rect x="363" y="275" width="42" height="145" rx="18" fill="url(#barGrad)" />
+</svg>

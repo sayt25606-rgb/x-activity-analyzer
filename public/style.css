@@ -77,8 +77,12 @@ body {
   white-space: nowrap;
 }
 
-.logo-icon {
-  font-size: 20px;
+.logo-image {
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  flex-shrink: 0;
+  display: block;
 }
 
 .header-search-form {
