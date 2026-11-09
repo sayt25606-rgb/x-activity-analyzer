@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>よくある質問 (FAQ) - X Activity Analyzer</title>
+  <meta name="description" content="X Activity Analyzer のよくある質問（FAQ）です。アカウント連携の有無、プライバシー、鍵アカウントの扱い、集計対象ポストの仕様など、疑問にお答えします。">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="alternate icon" type="image/png" href="favicon-32x32.png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="stylesheet" href="style.css">
+  <!-- Google AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8713294456466209"
+       crossorigin="anonymous"></script>
+</head>
+<body>
+  <!-- ================= 統一ヘッダー ================= -->
+  <header class="app-header">
+    <div class="header-inner">
+      <a href="/" class="header-logo">
+        <img src="logo-icon.svg" alt="X Activity Analyzer" class="logo-image" width="21" height="22">
+        <span class="logo-text">X Activity Analyzer</span>
+      </a>
+
+      <div class="header-right">
+        <!-- ハンバーガーメニューボタン -->
+        <div class="header-menu-container">
+          <button type="button" id="menuToggleBtn" class="menu-toggle-btn" aria-label="メニューを開く" aria-expanded="false">
+            <svg class="hamburger-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
+              <line x1="4" y1="6" x2="20" y2="6"></line>
+              <line x1="4" y1="12" x2="20" y2="12"></line>
+              <line x1="4" y1="18" x2="20" y2="18"></line>
+            </svg>
+          </button>
+
+          <!-- ドロップダウンメニュー -->
+          <div id="headerDropdown" class="header-dropdown" hidden>
+            <nav class="dropdown-nav">
+              <a href="/" class="dropdown-item">ホーム</a>
+              <a href="/about.html" class="dropdown-item">使い方・機能紹介</a>
+              <a href="/examples.html" class="dropdown-item">分析例・活用シーン</a>
+              <a href="/faq.html" class="dropdown-item active">よくある質問 (FAQ)</a>
+              <div class="dropdown-divider"></div>
+              <a href="/privacy.html" class="dropdown-item sub-item">プライバシーポリシー</a>
+              <a href="/terms.html" class="dropdown-item sub-item">利用規約</a>
+              <a href="/contact.html" class="dropdown-item sub-item">お問い合わせ</a>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= メインコンテンツ ================= -->
+  <main class="content-page">
+    <article class="content-card">
+      <h1 class="content-title">よくある質問 (FAQ)</h1>
+      <p class="content-desc">
+        X Activity Analyzer について、ユーザーの皆様からよくいただくご質問とその回答をまとめています。
+      </p>
+
+      <section class="content-section">
+        <div class="faq-list">
+          <!-- Q1 -->
+          <div class="faq-item">
+            <h3 class="faq-question">Q. X（旧Twitter）のアカウント連携やログインは必要ですか？</h3>
+            <div class="faq-answer">
+              <p>いいえ、<strong>一切不要です</strong>。パスワードの入力やアプリ認証を求められることはありません。公開されているポスト情報を取得する仕組みのため、ユーザー名（ID）を入力するだけで安全にご利用いただけます。</p>
+            </div>
+          </div>
+
+          <!-- Q2 -->
+          <div class="faq-item">
+            <h3 class="faq-question">Q. 他人のアカウントを分析した場合、相手に通知されたりバレたりしますか？</h3>
+            <div class="faq-answer">
+              <p>いいえ、<strong>相手に通知が届くことは一切ありません</strong>。当ツールはWeb上に一般公開されているポスト情報のみを読み取るため、誰がいつどのアカウントを分析したかが相手や第三者に伝わることはありません。</p>
+            </div>
+          </div>
+
+          <!-- Q3 -->
+          <div class="faq-item">
+            <h3 class="faq-question">Q. 非公開アカウント（鍵垢）は分析できますか？</h3>
+            <div class="faq-answer">
+              <p>いいえ、<strong>非公開アカウントのポストは分析できません</strong>。当ツールはプライバシー保護およびセキュリティの観点から、公開アカウントのポストのみを対象としています。</p>
+            </div>
+          </div>
+
+          <!-- Q4 -->
+          <div class="faq-item">
+            <h3 class="faq-question">Q. なぜ「直近100件」のポストを対象にしているのですか？</h3>
+            <div class="faq-answer">
+              <p>数年前の古い生活リズムではなく、<strong>「現在のリアルタイムな生活リズム・アクティブ時間帯」</strong>を最も正確に反映させるためです。また、瞬時にグラフを描画して待ち時間をなくすための最適な集計件数として100件を採用しています。</p>
+            </div>
+          </div>
+
+          <!-- Q5 -->
+          <div class="faq-item">
+            <h3 class="faq-question">Q. グラフの時間帯は何時を基準にしていますか？</h3>
+            <div class="faq-answer">
+              <p><strong>日本標準時（JST, UTC+9）</strong>を基準としています。海外に在住のユーザー様や海外サーバーからのポストであっても、日本時間における0時〜23時の活動時間帯に変換して集計・表示されます。</p>
+            </div>
+          </div>
+
+          <!-- Q6 -->
+          <div class="faq-item">
+            <h3 class="faq-question">Q. リポスト（リツイート）や返信（リプライ）は含まれますか？</h3>
+            <div class="faq-answer">
+              <p>本人のオリジナルポストおよび返信（リプライ）が含まれます。他人のポストを単に再投稿しただけの単純なリポスト（RT）は、本人の直接的な活動リズムではないため除外または集計仕様に基づき処理されます。</p>
+            </div>
+          </div>
+
+          <!-- Q7 -->
+          <div class="faq-item">
+            <h3 class="faq-question">Q. 利用料金はかかりますか？有料版はありますか？</h3>
+            <div class="faq-answer">
+              <p>当サービスは<strong>完全無料</strong>でご利用いただけます。後から課金が発生したり、有料プランへ誘導されることはありません。</p>
+            </div>
+          </div>
+
+          <!-- Q8 -->
+          <div class="faq-item">
+            <h3 class="faq-question">Q. X（旧Twitter）の公式サービスですか？</h3>
+            <div class="faq-answer">
+              <p>いいえ、<strong>個人開発による非公式のWebツール</strong>です。X Corp. およびその関連組織とは一切関係ありません。</p>
+            </div>
+          </div>
+
+          <!-- Q9 -->
+          <div class="faq-item">
+            <h3 class="faq-question">Q. 共有URLやタイムラインに表示されるカードに有効期限はありますか？</h3>
+            <div class="faq-answer">
+              <p>共有URL（<code>/share?u=...&h=...</code>）には<strong>有効期限はありません</strong>。ポストに含まれる時間帯データがURL内に保持されているため、数ヶ月後や数年後であっても当時の分析結果とOGPカードをそのまま表示できます。</p>
+            </div>
+          </div>
+
+          <!-- Q10 -->
+          <div class="faq-item">
+            <h3 class="faq-question">Q. ユーザー名を入力しても「ポストが見つかりませんでした」と表示されます。</h3>
+            <div class="faq-answer">
+              <p>以下の原因が考えられます：</p>
+              <ul>
+                <li>ユーザー名の綴りに誤りがある</li>
+                <li>アカウントが非公開（鍵垢）または凍結・削除されている</li>
+                <li>直近で一度もポストを投稿していない</li>
+                <li>X側または外部API側で一時的な通信制限が発生している（少し時間をおいて再試行してください）</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="content-cta-box">
+        <h3>疑問は解決しましたか？さっそく分析してみましょう！</h3>
+        <p>気になるアカウントの活動時間帯を今すぐチェックできます。</p>
+        <a href="/" class="btn-primary-large">トップページで分析する</a>
+      </div>
+    </article>
+  </main>
+
+  <!-- ================= フッター ================= -->
+  <footer class="app-footer">
+    <div class="footer-links">
+      <a href="/about.html">使い方・概要</a>
+      <a href="/examples.html">分析例・活用法</a>
+      <a href="/faq.html">よくある質問</a>
+      <a href="/privacy.html">プライバシーポリシー</a>
+      <a href="/terms.html">利用規約</a>
+      <a href="/contact.html">お問い合わせ</a>
+    </div>
+    <p class="copyright">&copy; 2026 X Activity Analyzer - All rights reserved.</p>
+  </footer>
+
+  <script src="menu.js"></script>
+</body>
+</html>

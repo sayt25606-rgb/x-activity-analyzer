@@ -84,6 +84,105 @@ body {
   display: block;
 }
 
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.header-menu-container {
+  position: relative;
+}
+
+.menu-toggle-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  background: transparent;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-sm);
+  color: var(--text-main);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.menu-toggle-btn:hover,
+.menu-toggle-btn.active {
+  background: var(--bg-hover);
+  border-color: rgba(0, 0, 0, 0.15);
+}
+
+.hamburger-icon {
+  display: block;
+  stroke: var(--text-main);
+}
+
+/* ドロップダウンメニュー */
+.header-dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  width: 220px;
+  background: #ffffff;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+  padding: 8px 0;
+  z-index: 1000;
+  animation: dropdownFadeIn 0.18s ease-out;
+}
+
+@keyframes dropdownFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.dropdown-nav {
+  display: flex;
+  flex-direction: column;
+}
+
+.dropdown-item {
+  display: block;
+  padding: 10px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-main);
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+.dropdown-item:hover {
+  background: var(--bg-hover);
+  color: var(--primary-blue);
+}
+
+.dropdown-item.active {
+  color: var(--primary-blue);
+  background: var(--primary-light);
+}
+
+.dropdown-item.sub-item {
+  font-size: 12px;
+  color: var(--text-dim);
+  font-weight: 500;
+  padding: 8px 16px;
+}
+
+.dropdown-divider {
+  height: 1px;
+  background: var(--border-light);
+  margin: 6px 0;
+}
+
 .header-search-form {
   display: flex;
   align-items: center;
@@ -780,13 +879,23 @@ body {
 @media (max-width: 720px) {
   .header-inner {
     padding: 10px 14px;
+    gap: 10px;
   }
   .header-input-wrapper input {
-    width: 110px;
+    width: 100px;
   }
   .header-input-wrapper input:focus {
-    width: 130px;
+    width: 120px;
   }
+}
+
+@media (max-width: 560px) {
+  .header-search-form {
+    display: none;
+  }
+}
+
+@media (max-width: 720px) {
   .view-state {
     padding: 24px 14px 40px;
     gap: 24px;
@@ -1062,4 +1171,329 @@ body {
   font-size: 12px;
   line-height: 1.8;
   color: var(--text-dim);
+}
+
+/* ==========================================================================
+   6. 使い方・分析例・FAQ ページ専用スタイル
+   ========================================================================== */
+/* 特徴サマリーグリッド */
+.feature-highlights-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  margin: 28px 0 36px;
+}
+
+.highlight-item {
+  background: var(--bg-page);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 20px 18px;
+}
+
+.highlight-icon {
+  font-size: 24px;
+  margin-bottom: 8px;
+}
+
+.highlight-title {
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--text-main);
+  margin-bottom: 6px;
+}
+
+.highlight-desc {
+  font-size: 13px;
+  color: var(--text-dim);
+  line-height: 1.6;
+}
+
+/* ステップカード */
+.steps-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin: 20px 0;
+}
+
+.step-card {
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 22px;
+  background: #ffffff;
+}
+
+.step-number {
+  display: inline-block;
+  background: var(--primary-blue);
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 800;
+  padding: 3px 8px;
+  border-radius: 4px;
+  margin-bottom: 8px;
+  letter-spacing: 0.5px;
+}
+
+.step-card h3 {
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--text-main);
+  margin-bottom: 8px;
+}
+
+.step-card p {
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--text-dim);
+  margin: 0;
+}
+
+.step-card code {
+  background: var(--bg-page);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 13px;
+  border: 1px solid var(--border-light);
+}
+
+/* 時間帯スペックテーブル */
+.time-bands-spec {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 16px 0;
+}
+
+.band-spec-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  background: var(--bg-page);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-sm);
+  gap: 12px;
+}
+
+.spec-name {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-main);
+  white-space: nowrap;
+}
+
+.spec-desc {
+  font-size: 13px;
+  color: var(--text-dim);
+}
+
+/* 分析例パターンカード */
+.example-pattern-card {
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 24px;
+  margin-bottom: 24px;
+  background: #ffffff;
+}
+
+.pattern-badge {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 800;
+  padding: 2px 8px;
+  border-radius: 4px;
+  margin-bottom: 8px;
+}
+
+.badge-night {
+  background: #1e1b4b;
+  color: #c7d2fe;
+}
+
+.badge-day {
+  background: #e0f2fe;
+  color: #0369a1;
+}
+
+.badge-morning {
+  background: #fef3c7;
+  color: #b45309;
+}
+
+.pattern-title {
+  font-size: 17px;
+  font-weight: 800;
+  color: var(--text-main);
+  margin-bottom: 8px;
+}
+
+.pattern-meta {
+  font-size: 13px;
+  color: var(--text-dim);
+  margin-bottom: 16px;
+}
+
+.pattern-meta strong {
+  color: var(--text-main);
+}
+
+.pattern-preview-box {
+  background: var(--bg-page);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-sm);
+  padding: 18px 24px;
+  margin-bottom: 16px;
+}
+
+.pattern-chart-sim {
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+  height: 90px;
+}
+
+.chart-bar {
+  flex: 1;
+  background: linear-gradient(180deg, #93f0b5, #56cca4);
+  border-radius: 4px 4px 0 0;
+  transition: var(--transition);
+}
+
+.chart-bar.peak {
+  background: linear-gradient(180deg, #fef08a, #4ade80);
+  box-shadow: 0 0 10px rgba(74, 222, 128, 0.4);
+}
+
+.pattern-desc {
+  font-size: 14px;
+  line-height: 1.8;
+  color: var(--text-main);
+  margin-bottom: 12px;
+}
+
+.pattern-tip {
+  font-size: 13px;
+  line-height: 1.6;
+  background: #f8fafc;
+  border-left: 3px solid var(--primary-blue);
+  padding: 10px 14px;
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  color: var(--text-main);
+}
+
+/* 活用シーングリッド */
+.usecase-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+  margin: 20px 0;
+}
+
+.usecase-item {
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 20px;
+  background: #ffffff;
+}
+
+.usecase-icon {
+  font-size: 26px;
+  margin-bottom: 8px;
+}
+
+.usecase-item h4 {
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--text-main);
+  margin-bottom: 8px;
+}
+
+.usecase-item p {
+  font-size: 13px;
+  color: var(--text-dim);
+  line-height: 1.7;
+  margin: 0;
+}
+
+/* FAQリスト */
+.faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin: 20px 0;
+}
+
+.faq-item {
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 22px 24px;
+  background: #ffffff;
+}
+
+.faq-question {
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--text-main);
+  margin-bottom: 10px;
+  line-height: 1.5;
+}
+
+.faq-answer p {
+  font-size: 14px;
+  line-height: 1.8;
+  color: var(--text-dim);
+  margin: 0;
+}
+
+.faq-answer ul {
+  margin: 8px 0 0 20px;
+  padding: 0;
+}
+
+.faq-answer li {
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--text-dim);
+  margin-bottom: 4px;
+}
+
+/* CTAボックス */
+.content-cta-box {
+  background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+  border: 1px solid #bae6fd;
+  border-radius: var(--radius-lg);
+  padding: 32px 24px;
+  text-align: center;
+  margin-top: 40px;
+}
+
+.content-cta-box h3 {
+  font-size: 18px;
+  font-weight: 800;
+  color: #0369a1;
+  margin-bottom: 8px;
+}
+
+.content-cta-box p {
+  font-size: 14px;
+  color: #0284c7;
+  margin-bottom: 20px;
+}
+
+.btn-primary-large {
+  display: inline-block;
+  padding: 12px 30px;
+  background: var(--primary-blue);
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 800;
+  border-radius: var(--radius-md);
+  transition: var(--transition);
+}
+
+.btn-primary-large:hover {
+  background: var(--primary-hover);
 }

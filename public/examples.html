@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>分析例・活用シーン - X Activity Analyzer</title>
+  <meta name="description" content="X Activity Analyzer で分析できる代表的な3つの活動時間帯パターン（夜更かし型、ビジネス型、朝活型）の解説と、SNS運用や交流における効果的な活用シーンをご紹介します。">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="alternate icon" type="image/png" href="favicon-32x32.png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="stylesheet" href="style.css">
+  <!-- Google AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8713294456466209"
+       crossorigin="anonymous"></script>
+</head>
+<body>
+  <!-- ================= 統一ヘッダー ================= -->
+  <header class="app-header">
+    <div class="header-inner">
+      <a href="/" class="header-logo">
+        <img src="logo-icon.svg" alt="X Activity Analyzer" class="logo-image" width="21" height="22">
+        <span class="logo-text">X Activity Analyzer</span>
+      </a>
+
+      <div class="header-right">
+        <!-- ハンバーガーメニューボタン -->
+        <div class="header-menu-container">
+          <button type="button" id="menuToggleBtn" class="menu-toggle-btn" aria-label="メニューを開く" aria-expanded="false">
+            <svg class="hamburger-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
+              <line x1="4" y1="6" x2="20" y2="6"></line>
+              <line x1="4" y1="12" x2="20" y2="12"></line>
+              <line x1="4" y1="18" x2="20" y2="18"></line>
+            </svg>
+          </button>
+
+          <!-- ドロップダウンメニュー -->
+          <div id="headerDropdown" class="header-dropdown" hidden>
+            <nav class="dropdown-nav">
+              <a href="/" class="dropdown-item">ホーム</a>
+              <a href="/about.html" class="dropdown-item">使い方・機能紹介</a>
+              <a href="/examples.html" class="dropdown-item active">分析例・活用シーン</a>
+              <a href="/faq.html" class="dropdown-item">よくある質問 (FAQ)</a>
+              <div class="dropdown-divider"></div>
+              <a href="/privacy.html" class="dropdown-item sub-item">プライバシーポリシー</a>
+              <a href="/terms.html" class="dropdown-item sub-item">利用規約</a>
+              <a href="/contact.html" class="dropdown-item sub-item">お問い合わせ</a>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= メインコンテンツ ================= -->
+  <main class="content-page">
+    <article class="content-card">
+      <h1 class="content-title">分析例・活用シーン</h1>
+      <p class="content-desc">
+        X Activity Analyzer でユーザーを分析すると、一人ひとりの個性やライフスタイルが時間帯グラフに色濃く現れます。ここでは代表的な3つの活動パターンと、効果的な活用法をご紹介します。
+      </p>
+
+      <section class="content-section">
+        <h2>代表的な3つの活動パターン</h2>
+
+        <!-- パターン 1: 深夜型 -->
+        <div class="example-pattern-card">
+          <div class="pattern-badge badge-night">パターン 1</div>
+          <h3 class="pattern-title">🌙 深夜・夜更かしアクティブ型</h3>
+          <div class="pattern-meta">
+            <span class="meta-label">ピーク時間帯:</span> <strong>23:00 〜 02:00</strong> / 
+            <span class="meta-label">最も活発な時間:</span> <strong>深夜 (55%)</strong>
+          </div>
+          <div class="pattern-preview-box">
+            <div class="pattern-chart-sim sim-night">
+              <span class="chart-bar" style="height: 20%;"></span>
+              <span class="chart-bar" style="height: 15%;"></span>
+              <span class="chart-bar" style="height: 10%;"></span>
+              <span class="chart-bar" style="height: 35%;"></span>
+              <span class="chart-bar" style="height: 60%;"></span>
+              <span class="chart-bar" style="height: 90%;"></span>
+              <span class="chart-bar peak" style="height: 100%;"></span>
+            </div>
+          </div>
+          <p class="pattern-desc">
+            趣味の交流、クリエイター、ゲーマー、夜更かしが多いユーザーに頻繁に見られる傾向です。昼間は投稿が控えめですが、日没後から深夜にかけてポスト数が急激に上昇します。
+          </p>
+          <div class="pattern-tip">
+            💡 <strong>活用のヒント:</strong> このタイプのアカウントとリプライや交流を深めたい場合、22時以降の深夜帯にアプローチすると即座に反応が得られやすくなります。
+          </div>
+        </div>
+
+        <!-- パターン 2: ビジネス型 -->
+        <div class="example-pattern-card">
+          <div class="pattern-badge badge-day">パターン 2</div>
+          <h3 class="pattern-title">☀️ ビジネス・平日オフィス型</h3>
+          <div class="pattern-meta">
+            <span class="meta-label">ピーク時間帯:</span> <strong>12:00 または 18:00〜20:00</strong> / 
+            <span class="meta-label">最も活発な時間:</span> <strong>昼間・夜間</strong>
+          </div>
+          <div class="pattern-preview-box">
+            <div class="pattern-chart-sim sim-day">
+              <span class="chart-bar" style="height: 5%;"></span>
+              <span class="chart-bar" style="height: 30%;"></span>
+              <span class="chart-bar peak" style="height: 95%;"></span>
+              <span class="chart-bar" style="height: 40%;"></span>
+              <span class="chart-bar" style="height: 85%;"></span>
+              <span class="chart-bar" style="height: 70%;"></span>
+              <span class="chart-bar" style="height: 15%;"></span>
+            </div>
+          </div>
+          <p class="pattern-desc">
+            企業公式アカウント、ビジネス系インフルエンサー、社会人ユーザーに多い典型的な二峰性のグラフです。「ランチタイム（12時台）」と「退勤・夕食後のゴールデンタイム（18〜20時台）」に綺麗な山が形成されます。
+          </p>
+          <div class="pattern-tip">
+            💡 <strong>活用のヒント:</strong> 仕事中の時間帯はポストが途切れるため、重要な告知や長文ポストは12時ちょうど、または18時〜19時の通勤・退勤タイミングに合わせるとインプレッションが最大化します。
+          </div>
+        </div>
+
+        <!-- パターン 3: 朝活型 -->
+        <div class="example-pattern-card">
+          <div class="pattern-badge badge-morning">パターン 3</div>
+          <h3 class="pattern-title">🌅 朝活・モーニングルーティン型</h3>
+          <div class="pattern-meta">
+            <span class="meta-label">ピーク時間帯:</span> <strong>06:00 〜 08:00</strong> / 
+            <span class="meta-label">最も活発な時間:</span> <strong>朝方 (45%)</strong>
+          </div>
+          <div class="pattern-preview-box">
+            <div class="pattern-chart-sim sim-morning">
+              <span class="chart-bar" style="height: 5%;"></span>
+              <span class="chart-bar" style="height: 25%;"></span>
+              <span class="chart-bar peak" style="height: 100%;"></span>
+              <span class="chart-bar" style="height: 75%;"></span>
+              <span class="chart-bar" style="height: 30%;"></span>
+              <span class="chart-bar" style="height: 20%;"></span>
+              <span class="chart-bar" style="height: 10%;"></span>
+            </div>
+          </div>
+          <p class="pattern-desc">
+            自己啓発、投資家、ランナー、朝活コミュニティで活動するアカウントに特徴的なパターンです。夜は22時前後にきれいにポストが止まり、早朝5時〜7時台に集中してポストが投稿されます。
+          </p>
+          <div class="pattern-tip">
+            💡 <strong>活用のヒント:</strong> 朝のタイムラインは比較的ライバルの投稿数が少ないため、「おはよう」ポストや一日の目標宣言を行うことで、タイムラインの上位に定着しやすいメリットがあります。
+          </div>
+        </div>
+      </section>
+
+      <section class="content-section">
+        <h2>X Activity Analyzer の活用シーン</h2>
+        <div class="usecase-grid">
+          <div class="usecase-item">
+            <div class="usecase-icon">📈</div>
+            <h4>1. 最適な投稿タイミングの発見</h4>
+            <p>自分のフォロワーが活動している時間や、自分自身が一番ポストしやすい時間帯を客観的に把握し、インプレッションを高める投稿戦略に役立ちます。</p>
+          </div>
+
+          <div class="usecase-item">
+            <div class="usecase-icon">⏰</div>
+            <h4>2. 予約投稿ツールとの連携</h4>
+            <p>ピーク時間帯が判明したら、SocialDog などの予約投稿ツールを使って、その時間に合わせた自動投稿を設定することで運用を効率化できます。</p>
+          </div>
+
+          <div class="usecase-item">
+            <div class="usecase-icon">👀</div>
+            <h4>3. 推しや気になる人の浮上チェック</h4>
+            <p>憧れのクリエイターや気になるアカウントがいつXを見ているのか、どの時間帯にリプライすれば読んでもらいやすいかの目安になります。</p>
+          </div>
+
+          <div class="usecase-item">
+            <div class="usecase-icon">🤝</div>
+            <h4>4. タイムラインでの話題作り・シェア</h4>
+            <p>「私は完全な深夜型でした！」「朝活がグラフに現れてる」など、自分の生活リズムの自己紹介としてXにカード付きでポストしてフォロワーと交流できます。</p>
+          </div>
+        </div>
+      </section>
+
+      <div class="content-cta-box">
+        <h3>あなたは何型？今すぐ分析してみましょう！</h3>
+        <p>ユーザー名を入れるだけで、あなたの直近100件のグラフが数秒で現れます。</p>
+        <a href="/" class="btn-primary-large">トップページで分析する</a>
+      </div>
+    </article>
+  </main>
+
+  <!-- ================= フッター ================= -->
+  <footer class="app-footer">
+    <div class="footer-links">
+      <a href="/about.html">使い方・概要</a>
+      <a href="/examples.html">分析例・活用法</a>
+      <a href="/faq.html">よくある質問</a>
+      <a href="/privacy.html">プライバシーポリシー</a>
+      <a href="/terms.html">利用規約</a>
+      <a href="/contact.html">お問い合わせ</a>
+    </div>
+    <p class="copyright">&copy; 2026 X Activity Analyzer - All rights reserved.</p>
+  </footer>
+
+  <script src="menu.js"></script>
+</body>
+</html>

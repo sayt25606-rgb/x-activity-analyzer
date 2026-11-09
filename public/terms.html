@@ -21,7 +21,32 @@
         <img src="logo-icon.svg" alt="X Activity Analyzer" class="logo-image" width="21" height="22">
         <span class="logo-text">X Activity Analyzer</span>
       </a>
-      <a href="/" class="header-back-link">トップへ戻る</a>
+      <div class="header-right">
+        <!-- ハンバーガーメニューボタン -->
+        <div class="header-menu-container">
+          <button type="button" id="menuToggleBtn" class="menu-toggle-btn" aria-label="メニューを開く" aria-expanded="false">
+            <svg class="hamburger-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
+              <line x1="4" y1="6" x2="20" y2="6"></line>
+              <line x1="4" y1="12" x2="20" y2="12"></line>
+              <line x1="4" y1="18" x2="20" y2="18"></line>
+            </svg>
+          </button>
+
+          <!-- ドロップダウンメニュー -->
+          <div id="headerDropdown" class="header-dropdown" hidden>
+            <nav class="dropdown-nav">
+              <a href="/" class="dropdown-item">ホーム</a>
+              <a href="/about.html" class="dropdown-item">使い方・機能紹介</a>
+              <a href="/examples.html" class="dropdown-item">分析例・活用シーン</a>
+              <a href="/faq.html" class="dropdown-item">よくある質問 (FAQ)</a>
+              <div class="dropdown-divider"></div>
+              <a href="/privacy.html" class="dropdown-item sub-item">プライバシーポリシー</a>
+              <a href="/terms.html" class="dropdown-item active sub-item">利用規約</a>
+              <a href="/contact.html" class="dropdown-item sub-item">お問い合わせ</a>
+            </nav>
+          </div>
+        </div>
+      </div>
     </div>
   </header>
 
@@ -87,11 +112,16 @@
   <!-- ================= フッター ================= -->
   <footer class="app-footer">
     <div class="footer-links">
+      <a href="/about.html">使い方・概要</a>
+      <a href="/examples.html">分析例・活用法</a>
+      <a href="/faq.html">よくある質問</a>
       <a href="/privacy.html">プライバシーポリシー</a>
       <a href="/terms.html">利用規約</a>
       <a href="/contact.html">お問い合わせ</a>
     </div>
     <p class="copyright">&copy; 2026 X Activity Analyzer - All rights reserved.</p>
   </footer>
+
+  <script src="menu.js"></script>
 </body>
 </html>

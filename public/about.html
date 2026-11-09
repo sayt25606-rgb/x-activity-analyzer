@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>使い方・機能紹介 - X Activity Analyzer</title>
+  <meta name="description" content="X Activity Analyzer の使い方と機能紹介です。公開ポストから24時間の活動時間帯を集計し、空模様グラフで直感的に可視化するツールの特徴や活用法を解説します。">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="alternate icon" type="image/png" href="favicon-32x32.png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="stylesheet" href="style.css">
+  <!-- Google AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8713294456466209"
+       crossorigin="anonymous"></script>
+</head>
+<body>
+  <!-- ================= 統一ヘッダー ================= -->
+  <header class="app-header">
+    <div class="header-inner">
+      <a href="/" class="header-logo">
+        <img src="logo-icon.svg" alt="X Activity Analyzer" class="logo-image" width="21" height="22">
+        <span class="logo-text">X Activity Analyzer</span>
+      </a>
+
+      <div class="header-right">
+        <!-- ハンバーガーメニューボタン -->
+        <div class="header-menu-container">
+          <button type="button" id="menuToggleBtn" class="menu-toggle-btn" aria-label="メニューを開く" aria-expanded="false">
+            <svg class="hamburger-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
+              <line x1="4" y1="6" x2="20" y2="6"></line>
+              <line x1="4" y1="12" x2="20" y2="12"></line>
+              <line x1="4" y1="18" x2="20" y2="18"></line>
+            </svg>
+          </button>
+
+          <!-- ドロップダウンメニュー -->
+          <div id="headerDropdown" class="header-dropdown" hidden>
+            <nav class="dropdown-nav">
+              <a href="/" class="dropdown-item">ホーム</a>
+              <a href="/about.html" class="dropdown-item active">使い方・機能紹介</a>
+              <a href="/examples.html" class="dropdown-item">分析例・活用シーン</a>
+              <a href="/faq.html" class="dropdown-item">よくある質問 (FAQ)</a>
+              <div class="dropdown-divider"></div>
+              <a href="/privacy.html" class="dropdown-item sub-item">プライバシーポリシー</a>
+              <a href="/terms.html" class="dropdown-item sub-item">利用規約</a>
+              <a href="/contact.html" class="dropdown-item sub-item">お問い合わせ</a>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= メインコンテンツ ================= -->
+  <main class="content-page">
+    <article class="content-card">
+      <h1 class="content-title">使い方・機能紹介</h1>
+      <p class="content-desc">
+        X Activity Analyzer（X アクティビティ アナライザー）は、X（旧Twitter）ユーザーの直近の投稿傾向を24時間の空模様グラフで直感的に可視化・共有できる無料分析ツールです。
+      </p>
+
+      <!-- 特徴サマリーボックス -->
+      <div class="feature-highlights-grid">
+        <div class="highlight-item">
+          <div class="highlight-icon">🔒</div>
+          <div class="highlight-title">ログイン・連携不要</div>
+          <div class="highlight-desc">アカウントのパスワードや連携認証は一切不要。ユーザー名を入力するだけで即座に分析できます。</div>
+        </div>
+        <div class="highlight-item">
+          <div class="highlight-icon">🌅</div>
+          <div class="highlight-title">24分割の空模様グラフ</div>
+          <div class="highlight-desc">深夜の月夜から日中の青空、夕焼けまで、24時間の時間帯推移が美しい空のグラデーションで一目で分かります。</div>
+        </div>
+        <div class="highlight-item">
+          <div class="highlight-icon">📱</div>
+          <div class="highlight-title">Xでカード付き共有</div>
+          <div class="highlight-desc">分析結果をワンクリックでXへポスト可能。高解像度なグラフ画像がタイムラインのカードにそのまま表示されます。</div>
+        </div>
+      </div>
+
+      <section class="content-section">
+        <h2>3ステップの簡単な使い方</h2>
+        <div class="steps-container">
+          <div class="step-card">
+            <div class="step-number">STEP 1</div>
+            <h3>ユーザー名を入力して「分析する」をクリック</h3>
+            <p>トップ画面またはヘッダーの入力欄に、分析したい X ユーザーの ID（例: <code>elonmusk</code>）を入力します。先頭の「@」は入力してもしなくても自動で判別されます。</p>
+          </div>
+
+          <div class="step-card">
+            <div class="step-number">STEP 2</div>
+            <h3>24時間空模様グラフと詳細データを確認</h3>
+            <p>直近100件のポストを瞬時に集計し、24時間ごとの棒グラフを描画します。「最多投稿時間帯（ピーク時間）」や「深夜・朝方・昼間・夜間の割合」など、詳しい分析サマリーが表示されます。</p>
+          </div>
+
+          <div class="step-card">
+            <div class="step-number">STEP 3</div>
+            <h3>「X でポスト」またはリンクをコピーして共有</h3>
+            <p>「X でポスト」ボタンを押すと、分析結果の要約テキストと共有URLが入力された状態でXの投稿画面が開きます。タイムライン上では動的に生成された 1200×630 の美しい大判グラフカードが表示されます。</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="content-section">
+        <h2>4つの時間帯区分の定義</h2>
+        <p>当ツールでは、日本標準時（JST）の24時間を以下の4つのライフスタイル時間帯に区分してポスト比率を算出しています。</p>
+        <div class="time-bands-spec">
+          <div class="band-spec-row">
+            <span class="spec-name">🌙 深夜 (00:00 - 04:59)</span>
+            <span class="spec-desc">深夜のくつろぎ時間や夜更かし、夜勤帯のポスト</span>
+          </div>
+          <div class="band-spec-row">
+            <span class="spec-name">🌅 朝方 (05:00 - 10:59)</span>
+            <span class="spec-desc">起床、朝活、通勤・通学時間帯のポスト</span>
+          </div>
+          <div class="band-spec-row">
+            <span class="spec-name">☀️ 昼間 (11:00 - 16:59)</span>
+            <span class="spec-desc">ランチタイム、日中の活動時間帯のポスト</span>
+          </div>
+          <div class="band-spec-row">
+            <span class="spec-name">🌆 夜間 (17:00 - 23:59)</span>
+            <span class="spec-desc">退勤・帰宅、夕食後、ゴールデンタイムのポスト</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="content-section">
+        <h2>ご利用にあたってのご留意事項</h2>
+        <ul>
+          <li><strong>公開アカウントのみ分析可能</strong>: 非公開（鍵アカウント）のポストは仕様上取得・分析できません。</li>
+          <li><strong>直近100件の集計</strong>: アカウントの「現在のアクティブな生活リズム」を正確に反映するため、直近100件のポストを対象としています。</li>
+          <li><strong>非公式ツール</strong>: 本サービスは個人開発による非公式ツールであり、X Corp. の運営とは一切関係ありません。</li>
+        </ul>
+      </section>
+
+      <div class="content-cta-box">
+        <h3>さっそく自分の投稿時間帯をチェックしてみましょう！</h3>
+        <p>完全無料・アカウント連携なしですぐにご利用いただけます。</p>
+        <a href="/" class="btn-primary-large">トップページで分析する</a>
+      </div>
+    </article>
+  </main>
+
+  <!-- ================= フッター ================= -->
+  <footer class="app-footer">
+    <div class="footer-links">
+      <a href="/about.html">使い方・概要</a>
+      <a href="/examples.html">分析例・活用法</a>
+      <a href="/faq.html">よくある質問</a>
+      <a href="/privacy.html">プライバシーポリシー</a>
+      <a href="/terms.html">利用規約</a>
+      <a href="/contact.html">お問い合わせ</a>
+    </div>
+    <p class="copyright">&copy; 2026 X Activity Analyzer - All rights reserved.</p>
+  </footer>
+
+  <script src="menu.js"></script>
+</body>
+</html>
