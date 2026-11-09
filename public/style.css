@@ -1187,8 +1187,33 @@ body {
   box-shadow: 0 0 0 3px rgba(29, 155, 240, 0.15);
 }
 
+.form-privacy-agreement {
+  margin-top: 20px;
+  padding: 14px 16px;
+  background: var(--bg-hover);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-sm);
+}
+
+.form-privacy-text {
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--text-dim);
+  margin: 0;
+}
+
+.form-privacy-text a {
+  color: var(--primary-blue);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.form-privacy-text a:hover {
+  text-decoration: underline;
+}
+
 .form-submit-wrapper {
-  margin-top: 28px;
+  margin-top: 24px;
 }
 
 .contact-submit-btn {
