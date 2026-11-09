@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>分析例・活用シーン - X Activity Analyzer</title>
-  <meta name="description" content="X Activity Analyzer で分析できる代表的な3つの活動時間帯パターン（夜更かし型、ビジネス型、朝活型）の解説と、SNS運用や交流における効果的な活用シーンをご紹介します。">
+  <meta name="description" content="X Activity Analyzer の分析結果画面の表示例（モック）と、グラフや数値の見方、SNS運用や交流における効果的な活用シーンをご紹介します。">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="alternate icon" type="image/png" href="favicon-32x32.png">
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
@@ -56,126 +56,396 @@
     <article class="content-card">
       <h1 class="content-title">分析例・活用シーン</h1>
       <p class="content-desc">
-        X Activity Analyzer でユーザーを分析すると、一人ひとりの個性やライフスタイルが時間帯グラフに色濃く現れます。ここでは代表的な3つの活動パターンと、効果的な活用法をご紹介します。
+        X Activity Analyzer でユーザーを分析した際の結果画面のサンプル（モック）と、グラフや数値の見方、SNS運用や交流における効果的な活用シーンをご紹介します。
       </p>
 
+      <!-- 1. 実際のモック画面 -->
       <section class="content-section">
-        <h2>代表的な3つの活動パターン</h2>
+        <h2>分析結果画面の表示例（サンプル）</h2>
+        <p>以下は、実際に当ツールでユーザーを分析した際に表示される結果画面のイメージ（モック）です。24時間の空模様グラフと時間帯別の統計データが一目で分かります。</p>
 
-        <!-- パターン 1: 深夜型 -->
-        <div class="example-pattern-card">
-          <div class="pattern-badge badge-night">パターン 1</div>
-          <h3 class="pattern-title">🌙 深夜・夜更かしアクティブ型</h3>
-          <div class="pattern-meta">
-            <span class="meta-label">ピーク時間帯:</span> <strong>23:00 〜 02:00</strong> / 
-            <span class="meta-label">最も活発な時間:</span> <strong>深夜 (55%)</strong>
-          </div>
-          <div class="pattern-preview-box">
-            <div class="pattern-chart-sim sim-night">
-              <span class="chart-bar" style="height: 20%;"></span>
-              <span class="chart-bar" style="height: 15%;"></span>
-              <span class="chart-bar" style="height: 10%;"></span>
-              <span class="chart-bar" style="height: 35%;"></span>
-              <span class="chart-bar" style="height: 60%;"></span>
-              <span class="chart-bar" style="height: 90%;"></span>
-              <span class="chart-bar peak" style="height: 100%;"></span>
+        <div class="result-mock-container">
+          <!-- メイン分析結果カード（モック） -->
+          <div class="result-card">
+            <div class="result-card-header">
+              <div>
+                <div class="result-user-title">@sample_user のポスト時間帯</div>
+                <p class="result-user-meta">直近 100 件のポスト時間帯分析</p>
+              </div>
+            </div>
+
+            <!-- サマリーバー -->
+            <div class="result-summary-bar">
+              <div class="summary-chip">
+                <span class="chip-label">最多投稿時間帯:</span>
+                <strong class="chip-value">22:00 (16件)</strong>
+              </div>
+              <div class="summary-chip">
+                <span class="chip-label">最も活発な時間帯:</span>
+                <strong class="chip-value">夜間 (46%)</strong>
+              </div>
+            </div>
+
+            <!-- 24時間空模様SVGグラフ（実物モック） -->
+            <div class="graph-card-wrapper">
+              <div class="graph-render-area">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="100%" style="display: block; height: auto;" aria-label="24時間投稿時間帯グラフのサンプル">
+  <defs>
+    <clipPath id="canvasClip">
+      <rect width="1200" height="630" />
+    </clipPath>
+    <filter id="softShadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#0f172a" flood-opacity="0.3" />
+    </filter>
+    <filter id="cloudShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#1e4b7a" flood-opacity="0.18" />
+    </filter>
+    <linearGradient id="sunBody" x1="15%" y1="15%" x2="85%" y2="85%">
+      <stop offset="0%" stop-color="#fff36b" />
+      <stop offset="55%" stop-color="#ffe01b" />
+      <stop offset="100%" stop-color="#edc300" />
+    </linearGradient>
+    <linearGradient id="moonBody" x1="15%" y1="15%" x2="85%" y2="85%">
+      <stop offset="0%" stop-color="#f4f7fb" />
+      <stop offset="60%" stop-color="#dfe5ef" />
+      <stop offset="100%" stop-color="#c2cbd9" />
+    </linearGradient>
+    <!-- 通常バー: 優しいミントパステルグリーン -->
+    <linearGradient id="barGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#93f0b5" />
+      <stop offset="100%" stop-color="#56cca4" />
+    </linearGradient>
+    <!-- ピークバー: 明るいライムパステルグリーン -->
+    <linearGradient id="peakGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#fef08a" />
+      <stop offset="60%" stop-color="#86efac" />
+      <stop offset="100%" stop-color="#4ade80" />
+    </linearGradient>
+  </defs>
+
+  <g clip-path="url(#canvasClip)">
+    <!-- 24分割の空背景 -->
+    <g id="skyBands24">
+      <rect x="0" y="0" width="50" height="630" fill="#161b24" />
+      <rect x="50" y="0" width="50" height="630" fill="#191f2a" />
+      <rect x="100" y="0" width="50" height="630" fill="#1e2532" />
+      <rect x="150" y="0" width="50" height="630" fill="#252d3d" />
+      <rect x="200" y="0" width="50" height="630" fill="#3b415e" />
+      <rect x="250" y="0" width="50" height="630" fill="#7d5873" />
+      <rect x="300" y="0" width="50" height="630" fill="#d68763" />
+      <rect x="350" y="0" width="50" height="630" fill="#8292a8" />
+      <rect x="400" y="0" width="50" height="630" fill="#4f8cc4" />
+      <rect x="450" y="0" width="50" height="630" fill="#5796cf" />
+      <rect x="500" y="0" width="50" height="630" fill="#60a1db" />
+      <rect x="550" y="0" width="50" height="630" fill="#6badec" />
+      <rect x="600" y="0" width="50" height="630" fill="#74b5f2" />
+      <rect x="650" y="0" width="50" height="630" fill="#6badec" />
+      <rect x="700" y="0" width="50" height="630" fill="#5ea1db" />
+      <rect x="750" y="0" width="50" height="630" fill="#5292c9" />
+      <rect x="800" y="0" width="50" height="630" fill="#768ca8" />
+      <rect x="850" y="0" width="50" height="630" fill="#d9845b" />
+      <rect x="900" y="0" width="50" height="630" fill="#9c5d75" />
+      <rect x="950" y="0" width="50" height="630" fill="#58486e" />
+      <rect x="1000" y="0" width="50" height="630" fill="#353e57" />
+      <rect x="1050" y="0" width="50" height="630" fill="#252d3d" />
+      <rect x="1100" y="0" width="50" height="630" fill="#1e2532" />
+      <rect x="1150" y="0" width="50" height="630" fill="#191f2a" />
+    </g>
+
+    <!-- 月 (深夜) -->
+    <g transform="translate(150, 145)" filter="url(#softShadow)">
+      <circle cx="0" cy="0" r="68" fill="#ffffff" />
+      <circle cx="2" cy="2" r="66" fill="url(#moonBody)" />
+      <circle cx="-16" cy="15" r="20" fill="#9aa5b8" />
+      <circle cx="-14" cy="17" r="18.5" fill="#b0bacb" />
+      <circle cx="7" cy="-24" r="12" fill="#9aa5b8" />
+      <circle cx="8" cy="-23" r="10.8" fill="#b0bacb" />
+      <circle cx="27" cy="19" r="14" fill="#9aa5b8" />
+      <circle cx="28" cy="20" r="12.5" fill="#b0bacb" />
+    </g>
+
+    <!-- 太陽 ＋ 2層雲 (昼) -->
+    <g transform="translate(600, 140)" filter="url(#softShadow)">
+      <circle cx="0" cy="0" r="72" fill="#fffb9e" />
+      <circle cx="2" cy="2" r="70" fill="url(#sunBody)" />
+    </g>
+    <g transform="translate(640, 155)">
+      <g fill="#b8dffb" opacity="0.75">
+        <circle cx="22" cy="42" r="24" />
+        <circle cx="52" cy="28" r="30" />
+        <circle cx="88" cy="22" r="34" />
+        <circle cx="122" cy="34" r="26" />
+        <rect x="22" y="34" width="100" height="26" rx="13" />
+      </g>
+      <g fill="#f8fcff" filter="url(#cloudShadow)">
+        <circle cx="12" cy="50" r="20" />
+        <circle cx="40" cy="38" r="26" />
+        <circle cx="74" cy="32" r="30" />
+        <circle cx="108" cy="40" r="24" />
+        <circle cx="132" cy="50" r="18" />
+        <rect x="12" y="40" width="120" height="28" rx="14" />
+      </g>
+    </g>
+
+    <!-- 星々 (夜) -->
+    <g fill="#ffffff">
+      <path d="M 1055,95 Q 1055,117 1077,117 Q 1055,117 1055,139 Q 1055,117 1033,117 Q 1055,117 1055,95 Z" />
+      <path d="M 985,160 Q 985,178 1003,178 Q 985,178 985,196 Q 985,178 967,178 Q 985,178 985,160 Z" />
+      <path d="M 1125,185 Q 1125,199 1139,199 Q 1125,199 1125,213 Q 1125,199 1111,199 Q 1125,199 1125,185 Z" />
+      <circle cx="1005" cy="105" r="4.5" opacity="0.95" />
+      <circle cx="1135" cy="125" r="5" opacity="0.9" />
+      <circle cx="1065" cy="180" r="3.5" opacity="0.85" />
+      <circle cx="1095" cy="245" r="4" opacity="0.85" />
+      <path d="M 235,85 Q 235,97 247,97 Q 235,97 235,109 Q 235,97 223,97 Q 235,97 235,85 Z" opacity="0.9" />
+      <circle cx="55" cy="95" r="4" opacity="0.85" />
+    </g>
+
+    <!-- 棒グラフ用ベースライン -->
+    <line x1="20" y1="530" x2="1180" y2="530" stroke="rgba(255,255,255,0.25)" stroke-width="1.5" />
+
+    <!-- 棒グラフバー -->
+    <g id="bars">
+      <rect x="9" y="414" width="32" height="116" rx="6" fill="url(#barGrad)">
+        <title>0時: 5件</title>
+      </rect>
+      <rect x="59" y="461" width="32" height="69" rx="6" fill="url(#barGrad)">
+        <title>1時: 3件</title>
+      </rect>
+      <rect x="109" y="484" width="32" height="46" rx="6" fill="url(#barGrad)">
+        <title>2時: 2件</title>
+      </rect>
+      <rect x="159" y="507" width="32" height="23" rx="6" fill="url(#barGrad)">
+        <title>3時: 1件</title>
+      </rect>
+      <rect x="209" y="507" width="32" height="23" rx="6" fill="url(#barGrad)">
+        <title>4時: 1件</title>
+      </rect>
+      <rect x="309" y="507" width="32" height="23" rx="6" fill="url(#barGrad)">
+        <title>6時: 1件</title>
+      </rect>
+      <rect x="359" y="484" width="32" height="46" rx="6" fill="url(#barGrad)">
+        <title>7時: 2件</title>
+      </rect>
+      <rect x="409" y="484" width="32" height="46" rx="6" fill="url(#barGrad)">
+        <title>8時: 2件</title>
+      </rect>
+      <rect x="459" y="507" width="32" height="23" rx="6" fill="url(#barGrad)">
+        <title>9時: 1件</title>
+      </rect>
+      <rect x="509" y="484" width="32" height="46" rx="6" fill="url(#barGrad)">
+        <title>10時: 2件</title>
+      </rect>
+      <rect x="559" y="437" width="32" height="93" rx="6" fill="url(#barGrad)">
+        <title>11時: 4件</title>
+      </rect>
+      <rect x="609" y="252" width="32" height="278" rx="6" fill="url(#barGrad)">
+        <title>12時: 12件</title>
+      </rect>
+      <rect x="659" y="414" width="32" height="116" rx="6" fill="url(#barGrad)">
+        <title>13時: 5件</title>
+      </rect>
+      <rect x="709" y="461" width="32" height="69" rx="6" fill="url(#barGrad)">
+        <title>14時: 3件</title>
+      </rect>
+      <rect x="759" y="437" width="32" height="93" rx="6" fill="url(#barGrad)">
+        <title>15時: 4件</title>
+      </rect>
+      <rect x="809" y="391" width="32" height="139" rx="6" fill="url(#barGrad)">
+        <title>16時: 6件</title>
+      </rect>
+      <rect x="859" y="414" width="32" height="116" rx="6" fill="url(#barGrad)">
+        <title>17時: 5件</title>
+      </rect>
+      <rect x="909" y="368" width="32" height="162" rx="6" fill="url(#barGrad)">
+        <title>18時: 7件</title>
+      </rect>
+      <rect x="959" y="345" width="32" height="185" rx="6" fill="url(#barGrad)">
+        <title>19時: 8件</title>
+      </rect>
+      <rect x="1009" y="299" width="32" height="231" rx="6" fill="url(#barGrad)">
+        <title>20時: 10件</title>
+      </rect>
+      <rect x="1059" y="252" width="32" height="278" rx="6" fill="url(#barGrad)">
+        <title>21時: 12件</title>
+      </rect>
+      <rect x="1109" y="160" width="32" height="370" rx="6" fill="url(#peakGrad)">
+        <title>22時: 16件</title>
+      </rect>
+      <rect x="1159" y="391" width="32" height="139" rx="6" fill="url(#barGrad)">
+        <title>23時: 6件</title>
+      </rect>
+    </g>
+
+    <!-- 横軸ラベル (大きく2行) -->
+    <g id="labels">
+      <g text-anchor="middle">
+        <text x="25" y="578" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="38" font-weight="900" fill="#ffffff" letter-spacing="-1">0</text>
+        <text x="25" y="612" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="18" font-weight="800" fill="rgba(255,255,255,0.75)" letter-spacing="1">am</text>
+      </g>
+      <g text-anchor="middle">
+        <text x="175" y="578" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="38" font-weight="900" fill="#ffffff" letter-spacing="-1">3</text>
+        <text x="175" y="612" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="18" font-weight="800" fill="rgba(255,255,255,0.75)" letter-spacing="1">am</text>
+      </g>
+      <g text-anchor="middle">
+        <text x="325" y="578" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="38" font-weight="900" fill="#ffffff" letter-spacing="-1">6</text>
+        <text x="325" y="612" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="18" font-weight="800" fill="rgba(255,255,255,0.75)" letter-spacing="1">am</text>
+      </g>
+      <g text-anchor="middle">
+        <text x="475" y="578" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="38" font-weight="900" fill="#ffffff" letter-spacing="-1">9</text>
+        <text x="475" y="612" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="18" font-weight="800" fill="rgba(255,255,255,0.75)" letter-spacing="1">am</text>
+      </g>
+      <g text-anchor="middle">
+        <text x="625" y="578" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="38" font-weight="900" fill="#ffffff" letter-spacing="-1">12</text>
+        <text x="625" y="612" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="18" font-weight="800" fill="rgba(255,255,255,0.75)" letter-spacing="1">pm</text>
+      </g>
+      <g text-anchor="middle">
+        <text x="775" y="578" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="38" font-weight="900" fill="#ffffff" letter-spacing="-1">3</text>
+        <text x="775" y="612" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="18" font-weight="800" fill="rgba(255,255,255,0.75)" letter-spacing="1">pm</text>
+      </g>
+      <g text-anchor="middle">
+        <text x="925" y="578" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="38" font-weight="900" fill="#ffffff" letter-spacing="-1">6</text>
+        <text x="925" y="612" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="18" font-weight="800" fill="rgba(255,255,255,0.75)" letter-spacing="1">pm</text>
+      </g>
+      <g text-anchor="middle">
+        <text x="1075" y="578" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="38" font-weight="900" fill="#ffffff" letter-spacing="-1">9</text>
+        <text x="1075" y="612" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="18" font-weight="800" fill="rgba(255,255,255,0.75)" letter-spacing="1">pm</text>
+      </g>
+    </g>
+  </g>
+</svg>
+              </div>
+            </div>
+
+            <!-- シェアアクションボタン（モック） -->
+            <div class="share-actions">
+              <div class="share-btn x-btn mock-btn">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                <span>X でポスト</span>
+              </div>
+              <div class="share-btn copy-btn mock-btn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                <span>共有リンクをコピー</span>
+              </div>
             </div>
           </div>
-          <p class="pattern-desc">
-            趣味の交流、クリエイター、ゲーマー、夜更かしが多いユーザーに頻繁に見られる傾向です。昼間は投稿が控えめですが、日没後から深夜にかけてポスト数が急激に上昇します。
-          </p>
-          <div class="pattern-tip">
-            💡 <strong>活用のヒント:</strong> このタイプのアカウントとリプライや交流を深めたい場合、22時以降の深夜帯にアプローチすると即座に反応が得られやすくなります。
-          </div>
-        </div>
 
-        <!-- パターン 2: ビジネス型 -->
-        <div class="example-pattern-card">
-          <div class="pattern-badge badge-day">パターン 2</div>
-          <h3 class="pattern-title">☀️ ビジネス・平日オフィス型</h3>
-          <div class="pattern-meta">
-            <span class="meta-label">ピーク時間帯:</span> <strong>12:00 または 18:00〜20:00</strong> / 
-            <span class="meta-label">最も活発な時間:</span> <strong>昼間・夜間</strong>
-          </div>
-          <div class="pattern-preview-box">
-            <div class="pattern-chart-sim sim-day">
-              <span class="chart-bar" style="height: 5%;"></span>
-              <span class="chart-bar" style="height: 30%;"></span>
-              <span class="chart-bar peak" style="height: 95%;"></span>
-              <span class="chart-bar" style="height: 40%;"></span>
-              <span class="chart-bar" style="height: 85%;"></span>
-              <span class="chart-bar" style="height: 70%;"></span>
-              <span class="chart-bar" style="height: 15%;"></span>
-            </div>
-          </div>
-          <p class="pattern-desc">
-            企業公式アカウント、ビジネス系インフルエンサー、社会人ユーザーに多い典型的な二峰性のグラフです。「ランチタイム（12時台）」と「退勤・夕食後のゴールデンタイム（18〜20時台）」に綺麗な山が形成されます。
-          </p>
-          <div class="pattern-tip">
-            💡 <strong>活用のヒント:</strong> 仕事中の時間帯はポストが途切れるため、重要な告知や長文ポストは12時ちょうど、または18時〜19時の通勤・退勤タイミングに合わせるとインプレッションが最大化します。
-          </div>
-        </div>
+          <!-- 分析の詳細データ（モック） -->
+          <div class="detail-section mock-detail">
+            <div class="section-title">分析の詳細データ</div>
+            <div class="detail-grid">
+              <!-- ピーク時間帯カード -->
+              <div class="detail-card peak-summary-card">
+                <div class="detail-card-label">最多投稿時間帯 (ピーク)</div>
+                <div class="peak-time-display">
+                  <span class="peak-hour-value">22:00</span>
+                  <span class="peak-count-badge">16 件の投稿</span>
+                </div>
+                <p class="peak-note">夜のくつろぎ時間帯に最も集中してポストしています。</p>
+              </div>
 
-        <!-- パターン 3: 朝活型 -->
-        <div class="example-pattern-card">
-          <div class="pattern-badge badge-morning">パターン 3</div>
-          <h3 class="pattern-title">🌅 朝活・モーニングルーティン型</h3>
-          <div class="pattern-meta">
-            <span class="meta-label">ピーク時間帯:</span> <strong>06:00 〜 08:00</strong> / 
-            <span class="meta-label">最も活発な時間:</span> <strong>朝方 (45%)</strong>
-          </div>
-          <div class="pattern-preview-box">
-            <div class="pattern-chart-sim sim-morning">
-              <span class="chart-bar" style="height: 5%;"></span>
-              <span class="chart-bar" style="height: 25%;"></span>
-              <span class="chart-bar peak" style="height: 100%;"></span>
-              <span class="chart-bar" style="height: 75%;"></span>
-              <span class="chart-bar" style="height: 30%;"></span>
-              <span class="chart-bar" style="height: 20%;"></span>
-              <span class="chart-bar" style="height: 10%;"></span>
+              <!-- 時間帯別ポスト割合 -->
+              <div class="detail-card time-distribution-card">
+                <div class="detail-card-label">時間帯別ポスト割合</div>
+                <div class="time-bands-list">
+                  <div class="time-band-row">
+                    <span class="band-name">深夜 (00:00 - 04:59)</span>
+                    <div class="band-bar-track"><div class="band-bar-fill" style="width: 12%;"></div></div>
+                    <span class="band-val">12件 (12%)</span>
+                  </div>
+                  <div class="time-band-row">
+                    <span class="band-name">朝方 (05:00 - 10:59)</span>
+                    <div class="band-bar-track"><div class="band-bar-fill" style="width: 8%;"></div></div>
+                    <span class="band-val">8件 (8%)</span>
+                  </div>
+                  <div class="time-band-row">
+                    <span class="band-name">昼間 (11:00 - 16:59)</span>
+                    <div class="band-bar-track"><div class="band-bar-fill" style="width: 34%;"></div></div>
+                    <span class="band-val">34件 (34%)</span>
+                  </div>
+                  <div class="time-band-row">
+                    <span class="band-name">夜間 (17:00 - 23:59)</span>
+                    <div class="band-bar-track"><div class="band-bar-fill" style="width: 46%;"></div></div>
+                    <span class="band-val">46件 (46%)</span>
+                  </div>
+                </div>
+              </div>
             </div>
-          </div>
-          <p class="pattern-desc">
-            自己啓発、投資家、ランナー、朝活コミュニティで活動するアカウントに特徴的なパターンです。夜は22時前後にきれいにポストが止まり、早朝5時〜7時台に集中してポストが投稿されます。
-          </p>
-          <div class="pattern-tip">
-            💡 <strong>活用のヒント:</strong> 朝のタイムラインは比較的ライバルの投稿数が少ないため、「おはよう」ポストや一日の目標宣言を行うことで、タイムラインの上位に定着しやすいメリットがあります。
           </div>
         </div>
       </section>
 
+      <!-- 2. 見方 -->
+      <section class="content-section">
+        <h2>分析結果の見方</h2>
+        <p>
+          分析結果画面では、グラフの形状や各種の数値からアカウントの活動リズムを読み解くことができます。主な注目ポイントは以下の通りです。
+        </p>
+
+        <div class="guide-points-list">
+          <div class="guide-point-item">
+            <h3>1. 最多投稿時間帯（ピーク時間）の確認</h3>
+            <p>
+              空模様グラフの中で、ひときわ高く黄色〜黄緑色でハイライトされている棒が「最多投稿時間（ピーク時間）」です。この時間帯は本人が最も活発にスマホやPCを操作してポストを行っているタイミングを示しています。
+            </p>
+          </div>
+
+          <div class="guide-point-item">
+            <h3>2. 4つの時間帯割合による生活リズムの把握</h3>
+            <p>
+              深夜（00:00〜04:59）、朝方（05:00〜10:59）、昼間（11:00〜16:59）、夜間（17:00〜23:59）の4区分で、ポストの分布比率を集計しています。例えば夜間の比率が50%を超えるアカウントは夜型、朝方の比率が高いアカウントは朝活型といった傾向が客観的に把握できます。
+            </p>
+          </div>
+
+          <div class="guide-point-item">
+            <h3>3. 代表的な活動パターンの傾向</h3>
+            <p>
+              多くのユーザーは以下の3つの傾向のいずれかに分類されます。
+            </p>
+            <div class="patterns-summary-box">
+              <div class="pattern-summary-row">
+                <span class="pattern-summary-tag badge-night">深夜・夜更かし型</span>
+                <span class="pattern-summary-text">22時〜深夜2時頃に投稿が集中。趣味、ゲーム、創作活動などの個人アカウントに多く見られます。</span>
+              </div>
+              <div class="pattern-summary-row">
+                <span class="pattern-summary-tag badge-day">ビジネス・オフィス型</span>
+                <span class="pattern-summary-text">12時台（昼休み）と18時〜20時台（退勤後）に山ができる二峰型。企業公式や社会人ユーザーに典型的な形です。</span>
+              </div>
+              <div class="pattern-summary-row">
+                <span class="pattern-summary-tag badge-morning">朝活・モーニング型</span>
+                <span class="pattern-summary-text">早朝5時〜8時台に集中してポスト。自己啓発、朝活コミュニティ、ランナーなどに多いパターンです。</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. 活用シーン -->
       <section class="content-section">
         <h2>X Activity Analyzer の活用シーン</h2>
         <div class="usecase-grid">
           <div class="usecase-item">
-            <div class="usecase-icon">📈</div>
             <h4>1. 最適な投稿タイミングの発見</h4>
             <p>自分のフォロワーが活動している時間や、自分自身が一番ポストしやすい時間帯を客観的に把握し、インプレッションを高める投稿戦略に役立ちます。</p>
           </div>
 
           <div class="usecase-item">
-            <div class="usecase-icon">⏰</div>
             <h4>2. 予約投稿ツールとの連携</h4>
-            <p>ピーク時間帯が判明したら、SocialDog などの予約投稿ツールを使って、その時間に合わせた自動投稿を設定することで運用を効率化できます。</p>
+            <p>ピーク時間帯が判明したら、予約投稿ツールなどを活用して、その時間に合わせた自動投稿を設定することで運用を効率化できます。</p>
           </div>
 
           <div class="usecase-item">
-            <div class="usecase-icon">👀</div>
             <h4>3. 推しや気になる人の浮上チェック</h4>
             <p>憧れのクリエイターや気になるアカウントがいつXを見ているのか、どの時間帯にリプライすれば読んでもらいやすいかの目安になります。</p>
           </div>
 
           <div class="usecase-item">
-            <div class="usecase-icon">🤝</div>
             <h4>4. タイムラインでの話題作り・シェア</h4>
-            <p>「私は完全な深夜型でした！」「朝活がグラフに現れてる」など、自分の生活リズムの自己紹介としてXにカード付きでポストしてフォロワーと交流できます。</p>
+            <p>「自分は夜更かし型だった」「朝活の習慣がグラフに現れている」など、生活リズムの自己紹介としてXにカード付きでポストし、フォロワーとの交流を楽しめます。</p>
           </div>
         </div>
       </section>
 
-      <div class="content-cta-box">
-        <h3>あなたは何型？今すぐ分析してみましょう！</h3>
-        <p>ユーザー名を入れるだけで、あなたの直近100件のグラフが数秒で現れます。</p>
+      <div class="content-cta-wrapper">
         <a href="/" class="btn-primary-large">トップページで分析する</a>
       </div>
     </article>
