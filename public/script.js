@@ -59,7 +59,7 @@ let currentShareUrl = '';
  * @returns {Promise<Date[]>} 投稿日時の配列
  */
 async function fetchUserPosts(username) {
-  const url = `https://fxtwitter.com/${encodeURIComponent(username)}/feed.xml?count=100`;
+  const url = `https://fxtwitter.com/${encodeURIComponent(username)}/feed.xml?count=100&with_replies=true`;
   const res = await fetch(url);
 
   if (res.status === 404) {
