@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="107 110 298 310" width="298" height="310" fill="none">
+  <defs>
+    <!-- 通常バー: 爽やかなミントパステルグリーン -->
+    <linearGradient id="headerBarGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#93f0b5" />
+      <stop offset="100%" stop-color="#56cca4" />
+    </linearGradient>
+    <!-- ピークバー: 明るいライムパステルグリーン -->
+    <linearGradient id="headerPeakGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#fef08a" />
+      <stop offset="60%" stop-color="#86efac" />
+      <stop offset="100%" stop-color="#4ade80" />
+    </linearGradient>
+  </defs>
+
+  <!-- 5本の緑の縦バー (青背景なし・透過) -->
+  <rect x="107" y="300" width="42" height="120" rx="18" fill="url(#headerBarGrad)" />
+  <rect x="171" y="215" width="42" height="205" rx="18" fill="url(#headerBarGrad)" />
+  <rect x="235" y="110" width="42" height="310" rx="18" fill="url(#headerPeakGrad)" />
+  <rect x="299" y="195" width="42" height="225" rx="18" fill="url(#headerBarGrad)" />
+  <rect x="363" y="275" width="42" height="145" rx="18" fill="url(#headerBarGrad)" />
+</svg>
