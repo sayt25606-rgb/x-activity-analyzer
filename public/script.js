@@ -473,6 +473,21 @@ bottomForm.addEventListener('submit', (e) => {
   handleAnalyze(bottomUsername.value);
 });
 
+// 4. スマホ用ヘッダー分析ボタン (トップ画面表示 & フォーカス)
+const mobileAnalyzeBtn = document.querySelector('.header-mobile-analyze-btn');
+if (mobileAnalyzeBtn) {
+  mobileAnalyzeBtn.addEventListener('click', (e) => {
+    if (window.location.pathname === '/' || window.location.pathname === '/index.html' || window.location.pathname === '') {
+      e.preventDefault();
+      history.pushState(null, '', '/');
+      stateB.hidden = true;
+      stateA.hidden = false;
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      mainUsername.focus();
+    }
+  });
+}
+
 // 共有URLコピー
 copyUrlBtn.addEventListener('click', async () => {
   if (!currentShareUrl) return;

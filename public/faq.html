@@ -23,6 +23,11 @@
       </a>
 
       <div class="header-right">
+        <!-- スマホ用ヘッダー分析ボタン (三本線の左) -->
+        <a href="/" class="header-mobile-analyze-btn" aria-label="トップページで分析する">
+          <span>分析</span>
+        </a>
+
         <!-- ハンバーガーメニューボタン -->
         <div class="header-menu-container">
           <button type="button" id="menuToggleBtn" class="menu-toggle-btn" aria-label="メニューを開く" aria-expanded="false">
@@ -91,6 +96,20 @@
             <h3 class="faq-question">Q. なぜ「直近100件」のポストを対象にしているのですか？</h3>
             <div class="faq-answer">
               <p>数年前の古い生活リズムではなく、<strong>「現在のリアルタイムな生活リズム・アクティブ時間帯」</strong>を最も正確に反映させるためです。また、瞬時にグラフを描画して待ち時間をなくすための最適な集計件数として100件を採用しています。</p>
+            </div>
+          </div>
+
+          <!-- Q5: 100件ぴったりにならない理由 -->
+          <div class="faq-item">
+            <h3 class="faq-question">Q. なぜ集計件数が100件ぴったりにならないことがあるのですか？</h3>
+            <div class="faq-answer">
+              <p>当ツールは直近最大100件をリクエストして集計を行いますが、以下のような要因により有効なポスト数が差し引かれる場合があります：</p>
+              <ul>
+                <li><strong>削除済み・非表示のポスト</strong>: 投稿後に削除されたポストや、相手が非公開・凍結になっているリプライなど、現在一般公開されていないポストは自動的に除外されます。</li>
+                <li><strong>単純なリポスト（RT）</strong>: 本人が自発的に活動した時間帯を正確に測るため、他人の投稿をそのまま拡散したリポストは時間帯集計の対象外としています。</li>
+                <li><strong>総投稿数</strong>: アカウントの累計投稿数が100件に満たない場合は、その全件数が上限となります。</li>
+              </ul>
+              <p>そのため、「直近最大100件のうち 86 件を集計」のように、現在正常に閲覧可能な有効ポストの実数が表示されます。</p>
             </div>
           </div>
 

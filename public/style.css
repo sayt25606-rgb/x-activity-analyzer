@@ -255,6 +255,27 @@ body {
   border-width: 2px;
 }
 
+/* スマホ用ヘッダー分析ボタン (三本線の左) */
+.header-mobile-analyze-btn {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  height: 32px;
+  padding: 0 14px;
+  background: var(--primary-blue);
+  color: #ffffff;
+  text-decoration: none;
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  font-weight: 700;
+  white-space: nowrap;
+  transition: var(--transition);
+}
+
+.header-mobile-analyze-btn:hover {
+  background: var(--primary-hover);
+}
+
 /* ==========================================================================
    共通メインコンテナ
    ========================================================================== */
@@ -892,6 +913,9 @@ body {
 @media (max-width: 560px) {
   .header-search-form {
     display: none;
+  }
+  .header-mobile-analyze-btn {
+    display: inline-flex;
   }
 }
 
