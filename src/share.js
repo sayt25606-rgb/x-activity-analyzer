@@ -9,7 +9,7 @@ export async function handleShare(request, env) {
   const username = (url.searchParams.get('u') || '').replace(/^@/, '').trim();
   const hourly = url.searchParams.get('h') || '';
 
-  const title = username ? `@${username} の活動時間帯分析` : 'X Activity Analyzer - X のポスト時間帯を分析して共有しよう';
+  const title = username ? `@${username} のポスト時間帯分析` : 'X Activity Analyzer - X のポスト時間帯を分析して共有しよう';
   const description = username
     ? `@${username} の直近100件のポスト時間帯（0〜23時）を分析しました。`
     : 'Xユーザーの直近の投稿時間帯を可視化・分析します。';

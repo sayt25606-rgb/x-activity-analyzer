@@ -160,7 +160,7 @@
     </g>
 
     <!-- 月 (深夜) -->
-    <g transform="translate(150, 145)" filter="url(#softShadow)">
+    <g transform="translate(150, 165)" filter="url(#softShadow)">
       <circle cx="0" cy="0" r="68" fill="#ffffff" />
       <circle cx="2" cy="2" r="66" fill="url(#moonBody)" />
       <circle cx="-16" cy="15" r="20" fill="#9aa5b8" />
@@ -172,11 +172,11 @@
     </g>
 
     <!-- 太陽 ＋ 2層雲 (昼) -->
-    <g transform="translate(600, 140)" filter="url(#softShadow)">
+    <g transform="translate(600, 168)" filter="url(#softShadow)">
       <circle cx="0" cy="0" r="72" fill="#fffb9e" />
       <circle cx="2" cy="2" r="70" fill="url(#sunBody)" />
     </g>
-    <g transform="translate(640, 155)">
+    <g transform="translate(640, 183)">
       <g fill="#b8dffb" opacity="0.75">
         <circle cx="22" cy="42" r="24" />
         <circle cx="52" cy="28" r="30" />
@@ -283,8 +283,44 @@
       </rect>
     </g>
 
-    <!-- 横軸ラベル (大きく2行) -->
-    <g id="labels">
+    <!-- 上部 横軸ラベル (Twitterカード下部バッジ被り防止) -->
+    <g id="topLabels">
+      <g text-anchor="middle">
+        <text x="25" y="42" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="38" font-weight="900" fill="#ffffff" letter-spacing="-1">0</text>
+        <text x="25" y="76" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="18" font-weight="800" fill="rgba(255,255,255,0.75)" letter-spacing="1">am</text>
+      </g>
+      <g text-anchor="middle">
+        <text x="175" y="42" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="38" font-weight="900" fill="#ffffff" letter-spacing="-1">3</text>
+        <text x="175" y="76" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="18" font-weight="800" fill="rgba(255,255,255,0.75)" letter-spacing="1">am</text>
+      </g>
+      <g text-anchor="middle">
+        <text x="325" y="42" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="38" font-weight="900" fill="#ffffff" letter-spacing="-1">6</text>
+        <text x="325" y="76" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="18" font-weight="800" fill="rgba(255,255,255,0.75)" letter-spacing="1">am</text>
+      </g>
+      <g text-anchor="middle">
+        <text x="475" y="42" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="38" font-weight="900" fill="#ffffff" letter-spacing="-1">9</text>
+        <text x="475" y="76" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="18" font-weight="800" fill="rgba(255,255,255,0.75)" letter-spacing="1">am</text>
+      </g>
+      <g text-anchor="middle">
+        <text x="625" y="42" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="38" font-weight="900" fill="#ffffff" letter-spacing="-1">12</text>
+        <text x="625" y="76" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="18" font-weight="800" fill="rgba(255,255,255,0.75)" letter-spacing="1">pm</text>
+      </g>
+      <g text-anchor="middle">
+        <text x="775" y="42" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="38" font-weight="900" fill="#ffffff" letter-spacing="-1">3</text>
+        <text x="775" y="76" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="18" font-weight="800" fill="rgba(255,255,255,0.75)" letter-spacing="1">pm</text>
+      </g>
+      <g text-anchor="middle">
+        <text x="925" y="42" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="38" font-weight="900" fill="#ffffff" letter-spacing="-1">6</text>
+        <text x="925" y="76" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="18" font-weight="800" fill="rgba(255,255,255,0.75)" letter-spacing="1">pm</text>
+      </g>
+      <g text-anchor="middle">
+        <text x="1075" y="42" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="38" font-weight="900" fill="#ffffff" letter-spacing="-1">9</text>
+        <text x="1075" y="76" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="18" font-weight="800" fill="rgba(255,255,255,0.75)" letter-spacing="1">pm</text>
+      </g>
+    </g>
+
+    <!-- 下部 横軸ラベル -->
+    <g id="bottomLabels">
       <g text-anchor="middle">
         <text x="25" y="578" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="38" font-weight="900" fill="#ffffff" letter-spacing="-1">0</text>
         <text x="25" y="612" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="18" font-weight="800" fill="rgba(255,255,255,0.75)" letter-spacing="1">am</text>

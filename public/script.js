@@ -148,7 +148,7 @@ function generateGraphSvg(hourly) {
     `;
   });
 
-  // 横軸ラベル (数字 + am/pm をギリギリまで大きく)
+  // 横軸ラベル (上部・下部の両方に同じ位置で配置)
   const hourLabels = [
     { h: 0,  num: '0',  period: 'am' },
     { h: 3,  num: '3',  period: 'am' },
@@ -160,13 +160,20 @@ function generateGraphSvg(hourly) {
     { h: 21, num: '9',  period: 'pm' }
   ];
 
-  let labelsSvg = '';
+  let bottomLabelsSvg = '';
+  let topLabelsSvg = '';
   hourLabels.forEach(({ h, num, period }) => {
     const x = h * 50 + 25;
-    labelsSvg += `
+    bottomLabelsSvg += `
       <g text-anchor="middle">
         <text x="${x}" y="578" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="38" font-weight="900" fill="#ffffff" letter-spacing="-1">${num}</text>
         <text x="${x}" y="612" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="18" font-weight="800" fill="rgba(255,255,255,0.75)" letter-spacing="1">${period}</text>
+      </g>
+    `;
+    topLabelsSvg += `
+      <g text-anchor="middle">
+        <text x="${x}" y="42" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="38" font-weight="900" fill="#ffffff" letter-spacing="-1">${num}</text>
+        <text x="${x}" y="76" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="18" font-weight="800" fill="rgba(255,255,255,0.75)" letter-spacing="1">${period}</text>
       </g>
     `;
   });
@@ -213,7 +220,7 @@ function generateGraphSvg(hourly) {
     </g>
 
     <!-- 月 (深夜) -->
-    <g transform="translate(150, 145)" filter="url(#softShadow)">
+    <g transform="translate(150, 165)" filter="url(#softShadow)">
       <circle cx="0" cy="0" r="68" fill="#ffffff" />
       <circle cx="2" cy="2" r="66" fill="url(#moonBody)" />
       <circle cx="-16" cy="15" r="20" fill="#9aa5b8" />
@@ -225,11 +232,11 @@ function generateGraphSvg(hourly) {
     </g>
 
     <!-- 太陽 ＋ 2層雲 (昼) -->
-    <g transform="translate(600, 140)" filter="url(#softShadow)">
+    <g transform="translate(600, 168)" filter="url(#softShadow)">
       <circle cx="0" cy="0" r="72" fill="#fffb9e" />
       <circle cx="2" cy="2" r="70" fill="url(#sunBody)" />
     </g>
-    <g transform="translate(640, 155)">
+    <g transform="translate(640, 183)">
       <g fill="#b8dffb" opacity="0.75">
         <circle cx="22" cy="42" r="24" />
         <circle cx="52" cy="28" r="30" />
@@ -268,9 +275,14 @@ function generateGraphSvg(hourly) {
       ${barsSvg}
     </g>
 
-    <!-- 横軸ラベル (大きく2行) -->
-    <g id="labels">
-      ${labelsSvg}
+    <!-- 上部 横軸ラベル (Twitterカード下部バッジ被り防止) -->
+    <g id="topLabels">
+      ${topLabelsSvg}
+    </g>
+
+    <!-- 下部 横軸ラベル -->
+    <g id="bottomLabels">
+      ${bottomLabelsSvg}
     </g>
   </g>
 </svg>
@@ -293,7 +305,7 @@ function renderResult({ username, total, hourly, shareUrl }) {
   currentShareUrl = shareUrl || generateShareUrl(username, hourly);
 
   // 1. 基本情報セット
-  resultUsername.textContent = `@${username} のツイート時間帯`;
+  resultUsername.textContent = `@${username} のポスト時間帯`;
   resultTotalCount.textContent = total;
 
   // 2. SVGグラフ生成・挿入
@@ -368,7 +380,7 @@ function renderResult({ username, total, hourly, shareUrl }) {
   }
 
   // 6. X 共有ボタン設定
-  const shareText = `@${username} の活動時間帯を分析しました。\n\nピーク時間: ${peakHour}時台 (${maxCount}件)\n最も活発な時間帯: ${bands[0].name} (${topBandPercent}%)\n\n#XActivityAnalyzer`;
+  const shareText = `@${username} のポスト時間帯を分析しました。\n\nピーク時間: ${peakHour}時台 (${maxCount}件)\n最も活発な時間帯: ${bands[0].name} (${topBandPercent}%)\n\n#XActivityAnalyzer`;
   const twitterIntentUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(currentShareUrl)}`;
   shareTwitterBtn.href = twitterIntentUrl;
 
